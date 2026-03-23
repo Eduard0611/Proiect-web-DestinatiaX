@@ -1,0 +1,228 @@
+body {
+    --culoare-fundal: #f0f4f8;
+    --culoare-contur: #2b5797;
+    --culoare-accent: #e67e22;
+    --culoare-text: #122b4f;
+    --margine-pagina: 120px;
+    
+    background-color: var(--culoare-fundal);
+    font-family: Arial, sans-serif;
+    color: var(--culoare-text);
+}
+
+main {
+    margin-left: var(--margine-pagina);
+    margin-right: var(--margine-pagina);
+}
+
+img, video, iframe, object {
+    max-width: 100%;
+    height: auto;
+}
+
+#grid-pagina {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: 
+        "zona1 zona1 zona1"
+        "zona3 zona2 zona4"
+        "zona5 zona2 zona4"
+        "zona5 zona6 zona7"
+        "zona8 zona8 zona8";
+}
+
+#grid-pagina > * {
+    border: 2px solid var(--culoare-contur);
+    box-shadow: 0px 0px 5px var(--culoare-contur);
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#welcome { grid-area: zona1; }
+#orar { grid-area: zona2; overflow-x: auto; }
+#calendar-evenimente { grid-area: zona3; }
+#anunturi { grid-area: zona4; }
+#utilizatori-online { grid-area: zona5; }
+#statistici-utilizator { grid-area: zona6; }
+#date-server { grid-area: zona7; }
+#diverse { grid-area: zona8; }
+
+
+
+.container-iframe {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.taburi-iframe {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+.taburi-iframe > a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--culoare-text);
+    border: 2px solid var(--culoare-contur);
+    border-bottom: none;
+    color: white;
+    text-decoration: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: all 0.5s linear;
+}
+
+.taburi-iframe > a:hover {
+    background-color: var(--culoare-accent);
+}
+
+iframe[name="video-frame"] {
+    border: 2px solid var(--culoare-contur);
+    width: 40%;
+}
+
+
+#tab-orar {
+    border-collapse: collapse;
+    width: 100%;
+    border: 5px inset var(--culoare-contur);
+}
+
+#tab-orar caption {
+    caption-side: bottom;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+#tab-orar th, 
+#tab-orar td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+#tab-orar tbody tr:nth-child(even) td {
+    border-top: 1px solid var(--culoare-contur);
+    border-bottom: 1px solid var(--culoare-contur);
+}
+
+#tab-orar tbody tr:nth-child(odd) td {
+    border-top: 1px solid var(--culoare-accent);
+    border-bottom: 1px solid var(--culoare-accent);
+}
+
+#tab-orar tbody tr {
+    outline: 5px solid transparent;
+    transition: outline 0.5s;
+}
+
+#tab-orar tbody tr:hover {
+    outline: 5px solid rgba(230, 126, 34, 0.7);
+}
+
+#link-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    
+    border-left: 3px solid var(--culoare-contur);
+    border-right: 3px solid var(--culoare-contur);
+    
+    background-color: rgba(255, 255, 255, 0.5);
+    opacity: 0.7;
+    transition: all 0.4s;
+    z-index: 1000;
+}
+
+#link-top:hover {
+    opacity: 1;
+    background-color: var(--culoare-fundal);
+}
+
+.triunghi {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 15px solid var(--culoare-text);
+    transition: border-bottom-color 0.3s, transform 0.3s;
+}
+
+#link-top:hover .triunghi {
+    border-bottom-color: var(--culoare-accent);
+    transform: translateY(-3px);
+}
+
+math {
+    font-size: 1.8rem;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+mi {
+    color: var(--culoare-contur);
+    font-weight: bold;
+}
+
+mo {
+    color: var(--culoare-accent);
+    padding: 0 5px;
+}
+
+mfrac {
+    border-left: 2px solid var(--culoare-accent);
+    padding-left: 5px;
+}
+
+
+@media screen and (max-width:1200px) {
+    body {
+        --margine-pagina: 80px;
+    }
+    
+    #grid-pagina {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+            "zona1 zona1"
+            "zona3 zona4"
+            "zona5 zona6"
+            "zona2 zona2"
+            "zona7 zona7"
+            "zona8 zona8";
+        gap: 15px;
+    }
+}
+
+@media screen and (max-width:700px) {
+    body {
+        --margine-pagina: 20px;
+    }
+    
+    #grid-pagina {
+        display: block;
+    }
+    
+    #grid-pagina > * {
+        margin-bottom: 15px;
+    }
+    
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
