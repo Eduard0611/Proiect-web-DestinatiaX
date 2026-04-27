@@ -12,19 +12,35 @@
     <link rel="icon" type="image/png" sizes="32x32" href="resurse/ico/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="resurse/ico/favicon-16x16.png">
     <meta name="msapplication-TileColor" content="#2b5797">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
 
-    <link rel="stylesheet" href="resurse/css/general.css">
-    <link rel="stylesheet" href="resurse/css/nav.css">
+    <link rel="stylesheet" href="resurse/css/general.css" type="text/css" />
+    <link rel="stylesheet" href="resurse/css/nav.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="resurse/css/reset.css" type="text/css" /> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Honk&display=swap" rel="stylesheet">
 
 </head>
 <body id="top">
 
     <header>
-        <h1>DestinatiaX</h1>
-        <img src="./resurse/imagini/sigla.png" alt="sigla" style="width: 120px" />
+        
         <nav>
-            <ul>
-                <li><a href="index.html">Acasă</a>
+            <label id="hamburger" for="ch-menu">
+                <img src="resurse/imagini/Hamburger_icon_alb.png" alt="menu">
+            </label>
+            <input type="checkbox" id="ch-menu" />
+            <ul class ="meniu"> 
+                <li>
+                    <div class="text-icon" id="acasa"><i class="fa-solid fa-house"></i> Acasa</div>
+
                     <ul>
                         <li><a href="#welcome">Bine ați venit</a></li>
                         <li><a href="#promotii">Promoții</a></li>
@@ -37,10 +53,18 @@
                         <li><a href="#resurse-utile">Ghiduri și Resurse</a></li>
                     </ul>
                 </li>
-                <li><a href="#zboruri">Zboruri</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <a href="#" class="text-icon"><span class="fas fa-solid fa-book"></span> 
+                        <div class="text-icon">Inregistrare </div></a>
+                </li>
+                <li><a href="#zboruri"><i class="fa-solid fa-plane-departure"></i> Zboruri</a></li>
+                <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
             </ul>
         </nav>
+
+        <h1 class="chewy-regular honk-hawaii">DestinatiaX <i class="fa-solid fa-plane-up fa-bounce" ></i></h1>
+        <!-- <img src="./resurse/imagini/sigla.png" alt="sigla" style="width: 120px" /> -->
+         
     </header>
 
     <main>
@@ -86,7 +110,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td rowspan="5">Zile<br />Lucrătoare</td>
+                            <td rowspan="5" class="exceptie-tabel">Zile<br />Lucrătoare</td>
                             <td>Luni</td>
                             <td>10-12</td>
                             <td>12-14</td>
@@ -132,7 +156,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td rowspan="2">Weekend</td>
+                            <td rowspan="2" class="exceptie-tabel">Weekend</td>
                             <td>Sâmbătă</td>
                             <td>10-12</td>
                             <td>12-13</td>
@@ -153,7 +177,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="6">Închis cu ocazia sărbătorilor legale, sau, când ne e mai lene așa.</td>
+                            <td colspan="6" class="exceptie-tabel">Închis cu ocazia sărbătorilor legale, sau, când ne e mai lene așa.</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -361,7 +385,7 @@
             
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.8409385966324!2d26.098863615524024!3d44.43639537910243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff4770bf3c53%3A0x6b63c631a72d3eb0!2sFacultatea%20de%20Matematic%C4%83%20%C8%99i%20Informatic%C4%83!5e0!3m2!1sro!2sro!4v1680000000000!5m2!1sro!2sro" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </address>
-        <p><small>Copyright © <time datetime="2026-03-15">15 martie 2026</time> Pochea Eduard Ionut</small></p>
+        <p><small>Copyright &copy; <time datetime="2026-03-15">15 martie 2026</time> Pochea Eduard Ionut</small></p>
     </footer>
 
 </body>
