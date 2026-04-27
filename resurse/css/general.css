@@ -205,8 +205,7 @@ main{
     transform: translateY(-3px);
 }
 
-/* animation: none 
-   transition: none */
+
    
 #tab-orar caption {
     caption-side: bottom;
@@ -313,5 +312,10 @@ mfrac {
 
     #grid-pagina {
         display: block;
+    }
+
+    *{
+        animation: none !important;
+        transition: none !important;
     }
 }
