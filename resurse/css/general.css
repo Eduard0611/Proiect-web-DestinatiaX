@@ -1,44 +1,81 @@
-body {
+html{
+    font-size: 16px;
+    transition: font-size 0.5s ease-in-out;
+}
+
+body{
     --culoare-fundal: #f0f4f8;
     --culoare-contur: #2b5797;
     --culoare-accent: #e67e22;
     --culoare-text: #122b4f;
     --margine-pagina: 120px;
-    
+    --spatiere-grid: 20px;
+
+
     background-color: var(--culoare-fundal);
-    font-family: Arial, sans-serif;
-    color: var(--culoare-text);
 }
 
-main {
-    margin-left: var(--margine-pagina);
+p{
+    border: 1px solid white;
+}
+
+main{
     margin-right: var(--margine-pagina);
+    margin-left: var(--margine-pagina);
+
 }
 
-img, video, iframe, object {
-    max-width: 100%;
-    height: auto;
+#hamburger, #ch-menu{
+    display: block;
 }
 
-#grid-pagina {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-areas: 
-        "zona1 zona1 zona1"
-        "zona3 zona2 zona4"
-        "zona5 zona2 zona4"
-        "zona5 zona6 zona7"
-        "zona8 zona8 zona8";
-}
-
-#grid-pagina > * {
-    border: 2px solid var(--culoare-contur);
+#grid-pagina > *{
+    border:1px solid var(--culoare-contur);
     box-shadow: 0px 0px 5px var(--culoare-contur);
     padding: 20px;
     background-color: white;
     border-radius: 10px;
 }
+
+#welcome {
+    grid-area: zona1;
+    background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.8)), 
+                url('../imagini/fundal-avion.jpg'); 
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left; 
+    min-height: 400px;
+}
+
+#welcome h2 {
+    font-size: 3rem; 
+    color: var(--culoare-text);
+    margin-bottom: 0.5rem;
+}
+
+#welcome p {
+    font-size: 1.2rem;
+    max-width: 600px; 
+    border: none; 
+}
+
+
+#grid-pagina {
+    display: grid;
+    gap: var(--spatiere-grid);
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas:
+                    "zona1 zona1 zona1"
+                    "zona3 zona2 zona4"
+                    "zona5 zona2 zona4"
+                    "zona5 zona6 zona7"
+                    "zona8 zona8 zona8";
+}
+
 
 #welcome { grid-area: zona1; }
 #orar { grid-area: zona2; overflow-x: auto; }
@@ -50,101 +87,103 @@ img, video, iframe, object {
 #diverse { grid-area: zona8; }
 
 
+#galerie img{
+    width: 40%;
+}
+
+.chewy-regular {
+  font-family: "Chewy", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.honk-hawaii {
+  font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "MORF" 0,
+    "SHLN" 50;
+}
+
+#video-promo iframe{
+    width: 100%;
+    height: 450px;
+
+    max-width: 800px;
+    min-width: 280px;
+
+    border: 1px solid var(--culoare-contur);
+    border-radius: 10px;
+}
 
 .container-iframe {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     height: auto;
-    width: 100%;
-    margin-top: 1rem;
+
 }
 
 .taburi-iframe {
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    justify-content: flex-start;
+    justify-content: flex-end;
 }
 
-.taburi-iframe > a {
+.taburi-iframe > a{
     display: inline-block;
     padding: 10px 20px;
     background-color: var(--culoare-text);
-    border: 2px solid var(--culoare-contur);
-    border-bottom: none;
+    border: 1px solid var(--culoare-text);
+    box-shadow: 0px 0px 5px var(--culoare-text);
     color: white;
     text-decoration: none;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    transition: all 0.5s linear;
+    margin-right: 10px;
+    transition: all 1s linear;
 }
 
-.taburi-iframe > a:hover {
+.taburi-iframe > a:hover{
     background-color: var(--culoare-accent);
-}
-
-iframe[name="video-frame"] {
-    border: 2px solid var(--culoare-contur);
-    width: 40%;
+    border: 1px solid var(--culoare-accent);
 }
 
 
-#tab-orar {
-    border-collapse: collapse;
-    width: 100%;
-    border: 5px inset var(--culoare-contur);
-}
-
-#tab-orar caption {
-    caption-side: bottom;
-    margin-top: 10px;
-    font-style: italic;
-}
-
-#tab-orar th, 
-#tab-orar td {
-    padding: 10px;
-    border: 1px solid #ccc;
-}
-
-#tab-orar tbody tr:nth-child(even) td {
-    border-top: 1px solid var(--culoare-contur);
-    border-bottom: 1px solid var(--culoare-contur);
-}
-
-#tab-orar tbody tr:nth-child(odd) td {
-    border-top: 1px solid var(--culoare-accent);
-    border-bottom: 1px solid var(--culoare-accent);
-}
-
-#tab-orar tbody tr {
-    outline: 5px solid transparent;
-    transition: outline 0.5s;
-}
-
-#tab-orar tbody tr:hover {
-    outline: 5px solid rgba(230, 126, 34, 0.7);
-}
 
 #link-top {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 0.3em;
+    opacity: 0.7;
+    right: 0.3em;
+    width: 3rem;
+    align-items: center;
+    
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+
+    border: 4px solid transparent;
+    
+    border-left: 4px solid var(--culoare-contur);
+    border-right: 4px solid var(--culoare-contur);
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
+    
     height: 50px;
-    border-radius: 15px;
-    
-    border-left: 3px solid var(--culoare-contur);
-    border-right: 3px solid var(--culoare-contur);
-    
-    background-color: rgba(255, 255, 255, 0.5);
-    opacity: 0.7;
+    border-radius: 50%;
+
+    background-color: var(--culoare-fundal);
     transition: all 0.4s;
-    z-index: 1000;
+    z-index: 10;
 }
 
 #link-top:hover {
@@ -166,12 +205,59 @@ iframe[name="video-frame"] {
     transform: translateY(-3px);
 }
 
+/* animation: none 
+   transition: none */
+   
+#tab-orar caption {
+    caption-side: bottom;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+#tab-orar tbody tr:nth-child(even){
+    border-top: 2px solid var(--culoare-accent);
+}
+
+#tab-orar tbody tr:nth-child(odd){
+    border-top: 2px solid var(--culoare-contur);
+}
+
+#tab-orar tbody tr{
+    transition: box-shadow 0.5s linear;
+    cursor: pointer;
+}
+
+
+#tab-orar tbody tr {
+    outline: 5px solid transparent;
+    transition: outline 0.5s;
+}
+
+#tab-orar tbody tr:hover {
+    outline: 5px solid rgba(43, 87, 151, 0.7);
+}
+
+#tab-orar {
+    border-collapse: collapse;
+    border: 5px inset var(--culoare-text);
+    width: 100%;
+}
+
+#tab-orar td, #tab-orar th{
+    border: 1px solid var(--culoare-text);
+    padding: 5px;
+    text-align: center;
+}
+
+
+
 math {
+    display: inline-block;
     font-size: 1.8rem;
-    background-color: #f9f9f9;
+    border: 20px solid transparent;
+    background-color: var(--culoare-fundal);
     padding: 10px;
     border-radius: 5px;
-    display: inline-block;
 }
 
 mi {
@@ -189,40 +275,43 @@ mfrac {
     padding-left: 5px;
 }
 
-
-@media screen and (max-width:1200px) {
-    body {
-        --margine-pagina: 80px;
+@media screen and (max-width: 1200px){
+    html{
+        font-size: 14px;
     }
-    
+
+    body{
+        --margine-pagina: 80px;
+        --spatiere-grid: 15px;
+    }
+
     #grid-pagina {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: 
-            "zona1 zona1"
-            "zona3 zona4"
-            "zona5 zona6"
-            "zona2 zona2"
-            "zona7 zona7"
-            "zona8 zona8";
-        gap: 15px;
+        grid-template-columns: repeat(2, 1fr); /* 1fr 1fr*/
+        grid-template-areas:
+                        "zona1 zona1"
+                        "zona3 zona5"
+                        "zona4 zona5"
+                        "zona2 zona2"
+                        "zona6 zona7"
+                        "zona8 zona8";
     }
 }
 
-@media screen and (max-width:700px) {
-    body {
-        --margine-pagina: 20px;
+@media screen and (max-width: 700px){
+    html{
+        font-size: 10px;
     }
-    
+
+    body{
+        --margine-pagina: 50px;
+        --spatiere-grid: 10px;
+    }
+
+    #video-promo iframe {
+        height: 250px; 
+    }
+
     #grid-pagina {
         display: block;
-    }
-    
-    #grid-pagina > * {
-        margin-bottom: 15px;
-    }
-    
-    * {
-        transition: none !important;
-        animation: none !important;
     }
 }
