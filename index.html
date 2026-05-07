@@ -8,16 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DestinatiaX - Bilete de avion ieftine</title>
     
-    <link rel="apple-touch-icon" sizes="180x180" href="resurse/ico/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="resurse/ico/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="resurse/ico/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/resurse/ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/resurse/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/resurse/ico/favicon-16x16.png">
     <meta name="msapplication-TileColor" content="#2b5797">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
 
-    <link rel="stylesheet" href="resurse/css/general.css" type="text/css" />
-    <link rel="stylesheet" href="resurse/css/nav.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="resurse/css/reset.css" type="text/css" /> -->
+    <link rel="stylesheet" href="/resurse/css/general.css" type="text/css" />
+    <link rel="stylesheet" href="/resurse/css/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/resurse/css/nav1000.css" type="text/css" media="screen and (max-width: 1000px)"/>
+    <link rel="stylesheet" href="/resurse/css/nav700.css" type="text/css" media="screen and (max-width: 700px)"/>
+    <link rel="stylesheet" href="/resurse/css/style.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="/resurse/css/reset.css" type="text/css" /> -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,17 +32,21 @@
 
 </head>
 <body id="top">
-
+    
+    <div id="watermark-print">
+        Pochea <br> Eduard Ionuț
+    </div>
+    
     <header>
         
         <nav>
             <label id="hamburger" for="ch-menu">
-                <img src="resurse/imagini/Hamburger_icon_alb.png" alt="menu">
+                <img src="/resurse/imagini/Hamburger_icon_alb.png" alt="menu">
             </label>
             <input type="checkbox" id="ch-menu" />
             <ul class ="meniu"> 
                 <li>
-                    <div class="text-icon" id="acasa"><i class="fa-solid fa-house"></i> Acasa</div>
+                    <div id="acasa"><i class="fa-solid fa-house"></i><span class="text-icon"> Acasa</span></div>
 
                     <ul>
                         <li><a href="#welcome">Bine ați venit</a></li>
@@ -50,20 +57,32 @@
                         <li><a href="#galerie">Galerie Foto</a></li>
                         <li><a href="#video-promo">Sfaturi Video</a></li>
                         <li><a href="#intrebari">Întrebări Frecvente</a></li>
-                        <li><a href="#resurse-utile">Ghiduri și Resurse</a></li>
+                        <li><a href="#/resurse-utile">Ghiduri și /resurse</a></li>
                     </ul>
                 </li>
+                
                 <li>
-                    <a href="#" class="text-icon"><span class="fas fa-solid fa-book"></span> 
-                        <div class="text-icon">Inregistrare </div></a>
+                    <a href="#"><i class="fas fa-solid fa-book"></i>
+                    <span class="text-icon">Inregistrare </span></a></li>
+
+                <li>
+                    <a href="#zboruri"><i class="fa-solid fa-plane-departure"></i> 
+                    <span class="text-icon"> Zboruri</span></a>
+                    <ul>
+                        <li><a href="europa.html"> Europa </a></li>
+                        <li><a href="asia.html"> Asia </a></li>
+                        <li><a href="america.html"> America </a></li>
+                    </ul>
                 </li>
-                <li><a href="#zboruri"><i class="fa-solid fa-plane-departure"></i> Zboruri</a></li>
-                <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+
+                <li><a href="#contact"><i class="fa-solid fa-envelope"></i> 
+                    <span class="text-icon"> Contact</span></a></li>
+
             </ul>
         </nav>
 
         <h1 class="chewy-regular honk-hawaii">DestinatiaX <i class="fa-solid fa-plane-up fa-bounce" ></i></h1>
-        <!-- <img src="./resurse/imagini/sigla.png" alt="sigla" style="width: 120px" /> -->
+        <!-- <img src=".//resurse/imagini/sigla.png" alt="sigla" style="width: 120px" /> -->
          
     </header>
 
@@ -259,33 +278,33 @@
                     <h2>Galerie Destinații Populare</h2>
 
                     <figure id="img-paris">
-                        <a href="resurse/imagini/destinatii/paris.jpg">
+                        <a href="/resurse/imagini/destinatii/paris.jpg">
                             <picture>
-                                <source media="(max-width:600px)" srcset="resurse/imagini/destinatii/paris-mic.jpg" />
-                                <source media="(max-width:1600px)" srcset="resurse/imagini/destinatii/paris-mediu.jpg" />
-                                <img src="resurse/imagini/destinatii/paris.jpg" alt="Paris" title="Apasă pentru mărire" width="300" height="200" />
+                                <source media="(max-width:600px)" srcset="/resurse/imagini/destinatii/paris-mic.jpg" />
+                                <source media="(max-width:1600px)" srcset="/resurse/imagini/destinatii/paris-mediu.jpg" />
+                                <img src="/resurse/imagini/destinatii/paris.jpg" alt="Paris" title="Apasă pentru mărire" width="300" height="200" />
                             </picture>
                         </a>
                         <figcaption>Paris - Orașul Luminilor</figcaption>
                     </figure>
 
                     <figure id="img-roma">
-                        <img src="resurse/imagini/destinatii/roma.jpg" alt="Roma" title="Roma antică" width="300" height="200" />
+                        <img src="/resurse/imagini/destinatii/roma.jpg" alt="Roma" title="Roma antică" width="300" height="200" />
                         <figcaption>Roma - Capitala Italiei</figcaption>
                     </figure>
 
                     <figure id="img-londra">
-                        <img src="resurse/imagini/destinatii/londra.jpg" alt="Londra" title="Londra pe timp de zi" width="300" height="200" />
+                        <img src="/resurse/imagini/destinatii/londra.jpg" alt="Londra" title="Londra pe timp de zi" width="300" height="200" />
                         <figcaption>Londra - Destinație istorică</figcaption>
                     </figure>
 
                     <figure id="img-barcelona">
-                        <img src="resurse/imagini/destinatii/barcelona.jpg" alt="Barcelona" title="Barcelona și arhitectura Gaudi" width="300" height="200" />
+                        <img src="/resurse/imagini/destinatii/barcelona.jpg" alt="Barcelona" title="Barcelona și arhitectura Gaudi" width="300" height="200" />
                         <figcaption>Barcelona - Orașul artelor</figcaption>
                     </figure>
 
                     <figure id="img-dubai">
-                        <img src="resurse/imagini/destinatii/dubai.jpg" alt="Dubai" title="Dubai modern" width="300" height="200" />
+                        <img src="/resurse/imagini/destinatii/dubai.jpg" alt="Dubai" title="Dubai modern" width="300" height="200" />
                         <figcaption>Dubai - Destinație exotică</figcaption>
                     </figure>
                 </section>
@@ -361,12 +380,12 @@
                             </a>
                         </li>
 
-                        <li>Legislație pasageri: <a href="resurse/Cum_sa_calatoriti_cu_avionul_in_UE.pdf" download="Ghid_Calatorie_UE.pdf">Descarcă Ghidul de Călătorie PDF</a></li>
+                        <li>Legislație pasageri: <a href="/resurse/Cum_sa_calatoriti_cu_avionul_in_UE.pdf" download="Ghid_Calatorie_UE.pdf">Descarcă Ghidul de Călătorie PDF</a></li>
                     </ul>
 
                     <h3>Previzualizare Ghid European pentru Pasageri</h3>
-                    <object data="resurse/Cum_sa_calatoriti_cu_avionul_in_UE.pdf" type="application/pdf" style="width: 100%; height: 600px;">
-                        <p>Browserul dumneavoastră nu suportă previzualizarea PDF direct în pagină. <a href="resurse/Cum_sa_calatoriti_cu_avionul_in_UE.pdf" download="Ghid_Calatorie_UE.pdf">Vă rugăm să îl descărcați de aici.</a></p>
+                    <object data="/resurse/Cum_sa_calatoriti_cu_avionul_in_UE.pdf" type="application/pdf" style="width: 100%; height: 600px;">
+                        <p>Browserul dumneavoastră nu suportă previzualizarea PDF direct în pagină. <a href="/resurse/Cum_sa_calatoriti_cu_avionul_in_UE.pdf" download="Ghid_Calatorie_UE.pdf">Vă rugăm să îl descărcați de aici.</a></p>
                     </object>
                 </section>
 
@@ -385,7 +404,9 @@
             
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.8409385966324!2d26.098863615524024!3d44.43639537910243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff4770bf3c53%3A0x6b63c631a72d3eb0!2sFacultatea%20de%20Matematic%C4%83%20%C8%99i%20Informatic%C4%83!5e0!3m2!1sro!2sro!4v1680000000000!5m2!1sro!2sro" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </address>
+        <p> Acesta este un proiect scolar. </p>
         <p><small>Copyright &copy; <time datetime="2026-03-15">15 martie 2026</time> Pochea Eduard Ionut</small></p>
+
     </footer>
 
 </body>
