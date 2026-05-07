@@ -1,0 +1,41 @@
+{
+  "name": "destinatiax",
+  "version": "1.0.0",
+  "description": "bilete de avion",
+  "keywords": [
+    "bilete",
+    "de",
+    "avion",
+    "destinatia",
+    "visurilor",
+    "vacanta",
+    "ieftina",
+    "zboruri",
+    "confortabile",
+    "DestinatiaX",
+    "calatorii",
+    "oferte",
+    "last-minute",
+    "rezervari",
+    "experiente"
+  ],
+  "homepage": "https://github.com/Eduard0611/Proiect-web-DestinatiaX#readme",
+  "bugs": {
+    "url": "https://github.com/Eduard0611/Proiect-web-DestinatiaX/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eduard0611/Proiect-web-DestinatiaX.git"
+  },
+  "license": "ISC",
+  "author": "Pochea Eduard Ionut",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1"
+  }
+}

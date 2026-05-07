@@ -1,0 +1,9 @@
+#Dependinte
+node_modules/
+
+# Fisiere generate de aplicatie sau compilatoare
+.DS_Store
+dist/
+build/
+*.log
+resurse/scss/*.map
