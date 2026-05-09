@@ -10,6 +10,7 @@ body{
     --culoare-text: #122b4f;
     --margine-pagina: 120px;
     --spatiere-grid: 20px;
+    --culoare-link-hover: #d35400;
 
 
     background-color: var(--culoare-fundal);
@@ -22,6 +23,10 @@ main{
     margin-left: var(--margine-pagina);
 
 }
+
+
+
+
 
 #hamburger, #ch-menu, #watermark-print {
     display: none;
@@ -274,6 +279,67 @@ mfrac {
     padding-left: 5px;
 }
 
+::cue {
+    background-color: var(--culoare-text); 
+    color: white; 
+}
+
+#container-video video {
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 1px solid var(--culoare-contur);
+    width: 80%;
+    height: auto;
+    
+    max-width: 800px;
+    min-width: 300px;
+    
+
+}
+
+#resurse-utile a:visited, #promotii a:visited {
+    color: var(--culoare-accent); 
+}
+
+#resurse-utile a[href^="https"]::before, #promotii a[href^="https"]::before{
+    content: "⮳";
+    font-size: 1.5em;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+#resurse-utile a:a[href^="https"]:hover::before , #promotii a[href^="https"]:hover::before {
+    color: var(--culoare-accent); 
+}
+
+#resurse-utile a, #promotii a{
+    background-image: radial-gradient(circle,
+        var(--culoare-accent) 0%,
+        var(--culoare-accent) 40%,
+        var(--culoare-accent) 60%,
+        transparent 80%,
+        transparent 100%
+    );
+
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-size: 0% 0%;
+
+    transition: all 0.4s ease-out;
+
+}
+
+#resurse-utile a:hover, #promotii a:hover {
+    background-size: 100% 100%;
+}
+
+#resurse-utile a:active, #promotii a:active{
+    border: 2px solid var(--culoare-contur);
+}
+
+
 @media screen and (max-width: 1200px){
     html{
         font-size: 14px;
@@ -295,6 +361,7 @@ mfrac {
                         "zona8 zona8";
     }
 }
+
 
 @media screen and (max-width: 700px){
     html{

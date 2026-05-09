@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html {
   font-size: 16px;
   transition: font-size 0.5s ease-in-out;
@@ -10,6 +11,7 @@ body {
   --culoare-text: #122b4f;
   --margine-pagina: 120px;
   --spatiere-grid: 20px;
+  --culoare-link-hover: #d35400;
   background-color: var(--culoare-fundal);
 }
 
@@ -264,6 +266,48 @@ mfrac {
     grid-template-areas: "zona1 zona1" "zona3 zona5" "zona4 zona5" "zona2 zona2" "zona6 zona7" "zona8 zona8";
   }
 }
+::cue {
+  background-color: var(--culoare-text);
+  color: white;
+}
+
+#container-video video {
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: 1px solid var(--culoare-contur);
+  width: 80%;
+  height: auto;
+  max-width: 800px;
+  min-width: 300px;
+}
+
+main a:not(#video-promo a) {
+  background-image: radial-gradient(circle, var(--culoare-accent) 0%, var(--culoare-accent) 40%, var(--culoare-accent) 60%, transparent 80%, transparent 100%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 0% 0%;
+  transition: all 0.5s ease-out;
+}
+main a:not(#video-promo a):visited {
+  color: var(--culoare-accent);
+}
+main a:not(#video-promo a):hover {
+  background-size: 100% 100%;
+}
+main a:not(#video-promo a):active {
+  border: 2px solid var(--culoare-contur);
+}
+main a:not(#video-promo a)[href^=https]::before {
+  content: "⮳";
+  font-size: 1.5em;
+  display: inline-block;
+  transition: color 0.5s ease;
+}
+main a:not(#video-promo a)[href^=https]:hover::before {
+  color: var(--culoare-accent);
+}
+
 @media screen and (max-width: 700px) {
   html {
     font-size: 10px;

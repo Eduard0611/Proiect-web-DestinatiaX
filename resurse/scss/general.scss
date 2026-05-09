@@ -14,6 +14,7 @@ body{
     --culoare-text: #122b4f;
     --margine-pagina: 120px;
     --spatiere-grid: 20px;
+    --culoare-link-hover: #d35400;
 
 
     background-color: var(--culoare-fundal);
@@ -303,6 +304,71 @@ mfrac {
                         "zona8 zona8";
     }
 }
+
+::cue {
+    background-color: var(--culoare-text); 
+    color: white; 
+}
+
+#container-video video {
+    display: block;
+    margin: 0 auto;
+    border-radius: $raza-border;
+    border: 1px solid var(--culoare-contur);
+    width: 80%;
+    height: auto;
+    
+    max-width: 800px;
+    min-width: 300px;
+    
+
+}
+
+main{
+    a:not(#video-promo a){
+        background-image: radial-gradient(circle,
+            var(--culoare-accent) 0%,
+            var(--culoare-accent) 40%,
+            var(--culoare-accent) 60%,
+            transparent 80%,
+            transparent 100%
+        );
+
+        background-position: center;
+        background-repeat: no-repeat;
+
+        background-size: 0% 0%;
+
+        transition: all $tranzitie-medie ease-out;
+
+        &:visited {
+            color: var(--culoare-accent);
+        }
+
+        &:hover {
+            background-size: 100% 100%;
+        }
+
+        &:active {
+            border: 2px solid var(--culoare-contur);
+        }
+
+        &[href^="https"]{
+        
+            &::before{
+                content: "⮳";
+                font-size: 1.5em;
+                display: inline-block;
+                transition: color $tranzitie-medie ease;
+            }
+
+            &:hover::before{
+                color: var(--culoare-accent); 
+            }
+        }
+    }
+}
+
 
 @media screen and (max-width: 700px){
     html{
