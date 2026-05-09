@@ -20,15 +20,31 @@ console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
 
 
+let vect_foldere=[ "temp", "logs", "backup", "fisiere_uploadate" ]
+for (let folder of vect_foldere){
+    let caleFolder=path.join(__dirname, folder);
+    if (!fs.existsSync(caleFolder)) {
+        fs.mkdirSync(path.join(caleFolder), {recursive:true});   
+    }
+}
+
 app.use("/resurse", express.static(path.join(__dirname, "resurse")));
 
 // app.get("/:a/:b", function (req, res){
 //     res.sendFile(path.join(__dirname, "index.html"));
 // });
 
+app.get ("/favicon.ico", function (req, res){
+    res.sendFile(path.join(__dirname, "resurse/ico/favicon.ico"));
+});
+
+
 app.get(["/", "/index", "/home"], function (req, res){
     //res.sendFile(path.join(__dirname, "index.html"));
-    res.render("pagini/index");
+    res.render("pagini/index", {
+        ip: req.ip
+    });
+
 });
 
 app.get("/despre", function (req, res){
@@ -47,13 +63,29 @@ function initErori(){
 }
 initErori()
 
+function afisareEroare(res, identificator, titlu, text, imagine){
+    //TO DO cautam eroarea dupa identificator
+    let eroare= obGlobal.obErori.info_erori.find((elem) =>
+        elem.identificator==identificator
+    );
+    //daca sunt setate titlu, text, imagine, le folosim, 
+    //altfel folosim cele din fisierul json pentru eroarea gasita
+    //daca nu o gasim, afisam eroarea default
+    let errDefault= obGlobal.obErori.eroare_default;
+
+    if (eroare?.status)
+        res.status(eroare.identificator);
+
+
+    res.render("pagini/eroare",{
+        imagine: imagine || eroare?.imagine || errDefault.imagine,
+        titlu: titlu || eroare?.titlu || errDefault.titlu,
+        text: text || eroare?.text || errDefault.text,
+    });
+}
+
 app.get("/eroare", function (req, res){
-    res.render("pagini/eroare",
-        {
-            imagine: obGlobal.obErori.eroare_default.imagine,
-            titlu: obGlobal.obErori.eroare_default.titlu,
-            text: obGlobal.obErori.eroare_default.text,
-        });
+    afisareEroare(res, 404, "Titlu !!!!")
 });
 
 
@@ -71,6 +103,44 @@ app.get("/cale2", function (req, res){
 app.get("/cale2/:a/:b", function (req, res){
     res.send(parseInt(req.params.a) + parseInt(req.params.b));
 });
+
+app.get("/*pagina", function(req, res){
+    console.log("Cale pagina", req.url);
+    if (req.url.startsWith("/resurse") && path.extname(req.url)==""){
+        afisareEroare(res,403);
+        return;
+    }
+    if (path.extname(req.url)==".ejs"){
+        afisareEroare(res,400);
+        return;
+    }
+    try{
+        res.render("pagini"+req.url, function(err, rezRandare){
+            if (err){
+                if (err.message.includes("Failed to lookup view")){
+                    afisareEroare(res,404)
+                }
+                else{
+                    afisareEroare(res);
+                }
+            }
+            else{
+                res.send(rezRandare);
+                console.log("Rezultat randare", rezRandare);
+            }
+        });
+    }
+    catch(err){
+        if (err.message.includes("Cannot find module")){
+            afisareEroare(res,404)
+        }
+        else{
+            afisareEroare(res);
+        }
+    }
+});
+
+
 
 
 app.listen(8080);
