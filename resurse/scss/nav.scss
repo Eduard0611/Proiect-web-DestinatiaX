@@ -1,0 +1,141 @@
+ $margine-nav: 10px;
+ 
+ nav{
+    --latime-buton: 140px;
+    --inaltime-buton: 30px;
+    background-color: var(--culoare-contur);
+
+    border: 1px solid var(--culoare-contur);
+    border-radius: 10px;
+    position: relative;
+    margin-top: $margine-nav;
+    margin-bottom: 20px;
+    margin-left: $margine-nav;
+    margin-right: $margine-nav;
+} 
+ 
+
+
+ul.meniu, ul.meniu ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+.text-icon, .imag-icon {
+   display: inline-block;
+}
+
+
+#hamburger, #ch-menu{
+    display: none;
+}
+
+ul.meniu{
+
+    display: flex;
+    position: relative;
+
+    ul {
+        display: none;
+        animation: animatie_submeniu 0.5s linear;
+        transform-origin: top ;
+    }
+
+    & > li:hover ul {
+        display: block;
+        position: absolute;
+        z-index: 10;
+    } 
+
+    li ul {
+        display: none;
+    }
+}
+
+
+
+@keyframes animatie_submeniu {
+    0%{
+        opacity: 0;
+        transform: scaleY(0);
+    }
+
+    100%{
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+
+
+ul.meniu > li:hover{
+    background-color: var(--culoare-accent);
+    color: white;
+    box-shadow: inset 0 0 5px 3px black;
+}
+
+ul.meniu li{
+    cursor: pointer;
+    width: var(--latime-buton);
+    height: var(--inaltime-buton);
+    background-color: var(--culoare-fundal);
+    border: 1px solid var(--culoare-contur);
+    border-radius: 10px;
+
+    color: var(--culoare-text);
+    text-decoration: none;
+    margin-right: $margine-nav;
+    transition: all 0.4s ease-in-out;
+
+    box-shadow: inset 0 0 0px 0px transparent;
+
+    text-align: center;
+    line-height: var(--inaltime-buton);
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: var(--inaltime-buton);
+    }
+
+    ul{ 
+        li{
+            a {
+                position: relative;
+                padding-left: 30px; 
+                text-align: left;
+
+                &::before {
+                    content: "\2192"; 
+                    position: absolute;
+                    opacity: 0;
+                    left: -20px;
+                    color: inherit;
+                }
+            }
+
+            &:hover a::before {
+                animation: glisare_sageata 0.4s ease-out forwards;
+            }
+
+        }
+    }   
+}
+
+
+
+@keyframes glisare_sageata {
+    0% {
+        left: -10px;
+        opacity: 0;
+    }
+    100% {
+        left: 10px; 
+        opacity: 1;
+    }
+}

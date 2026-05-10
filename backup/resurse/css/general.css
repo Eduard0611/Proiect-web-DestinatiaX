@@ -14,6 +14,10 @@ body {
   --culoare-link-hover: #d35400;
   background-color: var(--culoare-fundal);
 }
+body > header > h1 {
+  margin-right: 10px;
+  margin-left: 10px;
+}
 
 #video-promo iframe, #grid-pagina > * {
   border: 1px solid var(--culoare-contur);
@@ -23,6 +27,16 @@ body {
 main {
   margin-right: var(--margine-pagina);
   margin-left: var(--margine-pagina);
+}
+main h2 {
+  margin-top: 0.5rem;
+  color: var(--culoare-text);
+  margin-bottom: 0.5rem;
+}
+main h3 {
+  color: var(--culoare-text);
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 #hamburger, #ch-menu, #watermark-print {
@@ -46,13 +60,7 @@ main {
   text-align: left;
   min-height: 400px;
 }
-#welcome h2 {
-  font-size: 3rem;
-  color: var(--culoare-text);
-  margin-bottom: 0.5rem;
-}
 #welcome p {
-  font-size: 1.2rem;
   max-width: 600px;
   border: none;
 }
@@ -122,6 +130,7 @@ main {
   height: 450px;
   max-width: 800px;
   min-width: 280px;
+  border: 1px solid var(--culoare-contur);
 }
 
 .container-iframe {
@@ -129,15 +138,15 @@ main {
   flex-direction: column;
   align-items: center;
   height: auto;
+  margin-bottom: 20px;
 }
-
-.taburi-iframe {
+.container-iframe .taburi-iframe {
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-end;
 }
-.taburi-iframe > a {
+.container-iframe .taburi-iframe > a {
   display: inline-block;
   padding: 10px 20px;
   background-color: var(--culoare-text);
@@ -148,9 +157,9 @@ main {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   margin-right: 10px;
-  transition: all 1s linear;
+  transition: all 0.7s linear;
 }
-.taburi-iframe > a:hover {
+.container-iframe .taburi-iframe > a:hover {
   background-color: var(--culoare-accent);
   border: 1px solid var(--culoare-accent);
 }
@@ -232,7 +241,7 @@ main {
 math {
   display: inline-block;
   font-size: 1.8rem;
-  border: 20px solid transparent;
+  border: 10px solid transparent;
   background-color: var(--culoare-fundal);
   padding: 10px;
   border-radius: 10px;
@@ -253,19 +262,14 @@ mfrac {
   padding-left: 5px;
 }
 
-@media screen and (max-width: 1200px) {
-  html {
-    font-size: 14px;
-  }
-  body {
-    --margine-pagina: 80px;
-    --spatiere-grid: 15px;
-  }
-  #grid-pagina {
-    grid-template-columns: repeat(2, 1fr); /* 1fr 1fr*/
-    grid-template-areas: "zona1 zona1" "zona3 zona5" "zona4 zona5" "zona2 zona2" "zona6 zona7" "zona8 zona8";
-  }
+#galerie {
+  counter-reset: count 0;
 }
+#galerie figcaption::before {
+  content: counter(count, upper-roman) ". ";
+  counter-increment: count 1;
+}
+
 ::cue {
   background-color: var(--culoare-text);
   color: white;
@@ -308,6 +312,19 @@ main a:not(#video-promo a)[href^=https]:hover::before {
   color: var(--culoare-accent);
 }
 
+@media screen and (max-width: 1200px) {
+  html {
+    font-size: 14px;
+  }
+  body {
+    --margine-pagina: 80px;
+    --spatiere-grid: 15px;
+  }
+  #grid-pagina {
+    grid-template-columns: repeat(2, 1fr); /* 1fr 1fr*/
+    grid-template-areas: "zona1 zona1" "zona3 zona5" "zona4 zona5" "zona2 zona2" "zona6 zona7" "zona8 zona8";
+  }
+}
 @media screen and (max-width: 700px) {
   html {
     font-size: 10px;
@@ -327,5 +344,3 @@ main a:not(#video-promo a)[href^=https]:hover::before {
     transition: none !important;
   }
 }
-
-/*# sourceMappingURL=general.css.map */

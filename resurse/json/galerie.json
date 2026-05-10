@@ -1,0 +1,137 @@
+{
+	"cale_galerie":"resurse/imagini/galerie",
+	"imagini": [
+		{
+			"cale_imagine":"barcelona.jpg",
+			"titlu": "Spania",
+			"descriere":"Sagrada Familia - Barcelona ",
+			"sfert_ora":"1"
+		},
+		{
+			"cale_imagine":"dubai.jpg",
+			"titlu": "Emiratele Arabe Unite",
+			"descriere":"Burj Khalifa - Dubai",
+			"sfert_ora":"2"
+			
+		},
+		{
+			"cale_imagine":"londra.jpg",
+			"titlu": "Anglia",
+			"descriere":"Tower Bridge - Londra",
+			"sfert_ora":"3"
+		},
+		{
+			"cale_imagine":"paris-mare.jpg",
+			"titlu": "Franța",
+			"descriere":"Turnul Eiffel - Paris",
+			"sfert_ora":"4"
+		},
+		{
+			"cale_imagine":"roma.jpg",
+			"titlu": "Italia",
+			"descriere":"Colosseumul - Roma",
+			"sfert_ora":"1"
+		},
+		{
+			"cale_imagine":"new-york.jpg",
+			"titlu": "S.U.A.",
+			"descriere":"Suburbiile New York-ului",
+			"sfert_ora":"2"
+		},
+		{
+			"cale_imagine":"bucuresti.jpg",
+			"titlu": "România",
+			"descriere":"Arcul de triumf - Bucuresți",
+			"sfert_ora":"3"
+		},
+		{
+			"cale_imagine":"china.jpg",
+			"titlu": "China",
+			"descriere":"Marele Zid Chinezesc - China",
+			"sfert_ora":"4"
+		},
+		{
+			"cale_imagine":"rio.jpg",
+			"titlu": "Brazilia",
+			"descriere":"Cristos Mântuitorul - Rio de Janeiro",
+			"sfert_ora":"1"
+		},
+		{
+			"cale_imagine":"egipt.jpg",
+			"titlu": "China",
+			"descriere":"Sfinxul și Piramidele - Cairo",
+			"sfert_ora":"2"
+		},
+
+
+
+
+
+
+
+		{
+			"cale_imagine":"barcelona.jpg",
+			"titlu": "Spania",
+			"descriere":"Sagrada Familia - Barcelona ",
+			"sfert_ora":"3"
+		},
+		{
+			"cale_imagine":"dubai.jpg",
+			"titlu": "Emiratele Arabe Unite",
+			"descriere":"Burj Khalifa - Dubai",
+			"sfert_ora":"4"
+			
+		},
+		{
+			"cale_imagine":"londra.jpg",
+			"titlu": "Anglia",
+			"descriere":"Tower Bridge - Londra",
+			"sfert_ora":"1"
+		},
+		{
+			"cale_imagine":"paris-mare.jpg",
+			"titlu": "Franța",
+			"descriere":"Turnul Eiffel - Paris",
+			"sfert_ora":"2"
+		},
+		{
+			"cale_imagine":"roma.jpg",
+			"titlu": "Italia",
+			"descriere":"Colosseumul - Roma",
+			"sfert_ora":"3"
+		},
+		{
+			"cale_imagine":"new-york.jpg",
+			"titlu": "S.U.A.",
+			"descriere":"Suburbiile New York-ului",
+			"sfert_ora":"4"
+		},
+		{
+			"cale_imagine":"bucuresti.jpg",
+			"titlu": "România",
+			"descriere":"Arcul de triumf - Bucuresți",
+			"sfert_ora":"1"
+		},
+		{
+			"cale_imagine":"china.jpg",
+			"titlu": "China",
+			"descriere":"Marele Zid Chinezesc - China",
+			"sfert_ora":"2"
+		},
+		{
+			"cale_imagine":"rio.jpg",
+			"titlu": "Brazilia",
+			"descriere":"Cristos Mântuitorul - Rio de Janeiro",
+			"sfert_ora":"3"
+		},
+		{
+			"cale_imagine":"egipt.jpg",
+			"titlu": "China",
+			"descriere":"Sfinxul și Piramidele - Cairo",
+			"sfert_ora":"4"
+		}
+
+
+		
+	]
+}

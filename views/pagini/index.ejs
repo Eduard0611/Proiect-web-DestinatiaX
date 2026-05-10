@@ -22,8 +22,8 @@
             <section id="welcome">
                 <hgroup>
                     <h2>Bine ați venit la DestinatiaX</h2>
-                    <p>Zborul tău începe cu noi</p>
                 </hgroup>
+                <!-- <p><button class="btn btn-primary"> Buton Bootstrap</button></p> -->
                 <p><b>DestinatiaX</b> este o platforma pe care poti gasi cele mai <b>ieftine bilete de avion</b> spre <b>destinatia visurilor</b> tale. Aici vei avea oportunitatea sa iti alegi data zborului, locul de plecare si destinatia.</p>
                 
                 <article>
@@ -169,8 +169,8 @@
                             <div id="clip-video">
                                 <div id="stil-video">
                                     <video controls poster="resurse/imagini/poster_video.png" preload="auto" playsinline loop>
-                                        <source src="resurse/video/Caption_din_avion.mp4" type="video/mp4">
-                                        <source src="resurse/video/Caption_din_avion.mov" type="video/mov">
+                                        <source src="resurse/video/Videoclip_din_avion.mp4" type="video/mp4">
+                                        <source src="resurse/video/Videoclip_din_avion.mov" type="video/mov">
                                         
                                         <track default kind="captions" srclang="ro" label="romana" src="data:text/vtt;base64,V0VCVlRUIC0gTWFkZSB3aXRoIFZUVCBDcmVhdG9yDQoNCjAwOjAwLjAwMCAtLT4gMDA6MDMuMDAwIHBvc2l0aW9uOjEwJSBhbGlnbjpsZWZ0DQpWxIMgbXVsyJt1bWltIGPEgyBhyJtpIGFsZXMgc8SDIA0KemJ1cmHIm2kgY3UgPGI+RGVzdGluYXRpYVg8L2I+IQ0KDQowMDowMy4wMDAgLS0+IDAwOjA4LjAwMCBwb3NpdGlvbjoxMCUgYWxpZ246bGVmdA0KTnUgdWl0YcibaSBzxIMgdsSDIHB1bmXIm2kgY2VudHVyYSBwZW50cnUgZGVjb2xhcmUgyJlpIGF0ZXJpemFyZSENCg0KMDA6MDguMDAwIC0tPiAwMDoxMi4wMDAgcG9zaXRpb246MTAlIGFsaWduOmxlZnQNClbEgyBtdWzIm3VtaW0hIFVuIHpib3IgZGUgY29sZWPIm2llIHbEgyBkb3JpbSEgOikpKSk=">
                                         <track kind="captions" srclang="en" label="engleza" src="data:text/vtt;base64,V0VCVlRUIC0gTWFkZSB3aXRoIFZUVCBDcmVhdG9yDQoNCjAwOjAwLjAwMCAtLT4gMDA6MDMuMDAwIHBvc2l0aW9uOjEwJSBhbGlnbjpsZWZ0DQpUaGFuayB5b3UgZm9yIGNob29zaW5nIHRvIGZseSB3aXRoIDxiPkRlc3RpbmF0aW9uWDwvYj4hDQoNCjAwOjAzLjAwMCAtLT4gMDA6MDguMDAwIHBvc2l0aW9uOjEwJSBhbGlnbjpsZWZ0DQpEb24ndCBmb3JnZXQgdG8gZmFzdGVuIHlvdXIgc2VhdCBiZWx0IGZvciB0YWtlb2ZmIGFuZCBsYW5kaW5nIQ0KDQowMDowOC4wMDAgLS0+IDAwOjEyLjAwMCBwb3NpdGlvbjoxMCUgYWxpZ246bGVmdA0KVGhhbmsgeW91ISBXZSB3aXNoIHlvdSBhIHdvbmRlcmZ1bCBmbGlnaHQhIDopKSkp">
@@ -186,7 +186,7 @@
                     <h2>Promoții de sezon</h2>
                     <p>Profită de ofertele noastre <abbr title="Last Minute">LM</abbr> pentru plecări în următoarele 48 de ore!</p>
                     <p><strong>DestinatiaX</strong> îți aduce cele mai bune prețuri pentru vacanța ta de vis. Nu rata reducerile exclusive disponibile doar pe site-ul nostru.</p>
-                    <p>Intră aici pentru a primi un <a href="https://partz">cod de reducere</a> !!!</p>
+                    <p>Intră aici pentru a primi un <a href="https://cuponeria.ro">cod de reducere</a> !!!</p>
                     <article>
                         <h3>City Break în Europa</h3>
                         <p>Anul acesta am decis să reducem prețurile cu  <s>10%</s> 15%  pentru toate zborurile către capitalele europene.</p>
@@ -232,7 +232,29 @@
                 <section id="galerie">
                     <h2>Galerie Destinații Populare</h2>
 
-                    <figure id="img-paris">
+                    <div id="gr">
+                    <%
+                        let minutulCurent= (new  Date()).getMinutes();  
+                        let sfertCurent= Math.floor(minutulCurent / 15) + 1;
+
+                        for(let imag of locals.imagini){
+
+                            if (imag.sfert_ora && imag.sfert_ora == sfertCurent) {%>
+
+                                <figure>
+                                    <picture>
+                                        <source srcset="<%- imag.cale_imagine_medie %>" media="screen and (max-width: 1100px)">
+                                        <source srcset="<%- imag.cale_imagine_mic %>" media="screen and (max-width: 700px)">
+                                        <img src="<%- imag.cale_imagine %>" title="<%- imag.titlu %>" alt="<%- imag.titlu %>" width="370" height= "auto" />
+                                        <figcaption> <%- imag.descriere %> </figcaption>
+                                    </picture>
+                                </figure>
+
+                            <% } %>
+                        <% } %>
+                    </div>
+
+                    <!-- <figure id="img-paris"> 
                         <a href="/resurse/imagini/destinatii/paris.jpg">
                             <picture>
                                 <source media="(max-width:600px)" srcset="/resurse/imagini/destinatii/paris-mic.jpg" />
@@ -261,7 +283,8 @@
                     <figure id="img-dubai">
                         <img src="/resurse/imagini/destinatii/dubai.jpg" alt="Dubai" title="Dubai modern" width="300" height="200" />
                         <figcaption>Dubai - Destinație exotică</figcaption>
-                    </figure>
+                    </figure> -->
+
                 </section>
 
                 <section id="video-promo">
@@ -272,7 +295,7 @@
                             <a href="https://www.youtube.com/embed/jIuaLwBdfSM?autoplay=1&loop=1&controls=1&playlist=NR4SW8O2pX0,16UlSh4S15s" target="video-frame">Bagaj eficient</a>
                             <a href="https://www.youtube.com/embed/NR4SW8O2pX0?autoplay=1&loop=1&controls=1&playlist=16UlSh4S15s,jIuaLwBdfSM" target="video-frame">Ce să nu faci</a> 
                         </div>
-                        <iframe name="video-frame" width="560" height="315" src="https://www.youtube.com/embed/16UlSh4S15s?autoplay=1&loop=1&controls=1&playlist=jIuaLwBdfSM,NR4SW8O2pX0" title="YouTube video player" style="border:0;" allowfullscreen></iframe>
+                        <iframe name="video-frame" src="https://www.youtube.com/embed/16UlSh4S15s?autoplay=1&loop=1&controls=1&playlist=jIuaLwBdfSM,NR4SW8O2pX0" title="YouTube video player" allowfullscreen></iframe>
                     </div>
                 </section>
 

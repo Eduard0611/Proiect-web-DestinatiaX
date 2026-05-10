@@ -1,0 +1,45 @@
+@use "../../node_modules/bootstrap/scss/bootstrap" with (
+    
+    $primary: #2b5797,   
+    $success: #e67e22,  
+    
+    $body-color: #122b4f, 
+
+    $btn-link-color: #e67e22,      
+    $accordion-color: #122b4f,     
+    $nav-link-color: #2b5797,
+
+
+    $grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 850px,  
+        lg: 1150px,  
+        xl: 1200px,
+        xxl: 1400px
+    ),
+    
+    $border-radius: 15px,    
+    $border-radius-lg: 25px,
+    
+    $h1-font-size: 2rem,   
+    $h2-font-size: 1.75rem,
+    $h3-font-size: 1.25rem,
+    
+
+    $font-family-sans-serif: ("Roboto", "Segoe UI", Arial, sans-serif),
+    
+    $enable-shadows: true,
+    
+    
+    //corectare bootstrap
+
+    $font-weight-base: 500,       
+    $headings-font-weight: 700,
+    $navbar-padding-y: 10rem,
+    $spacer: 2rem,
+);
+
+
+
+
