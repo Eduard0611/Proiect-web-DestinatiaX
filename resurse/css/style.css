@@ -1,4 +1,12 @@
 @media print{
+
+    main {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+
     footer p:first-of-type{
         position: absolute;
         top: 90vh;
@@ -16,11 +24,13 @@
 
     #grid-pagina{
         display: block;
+        width: 100%;
     }
 
     #grid-pagina > * {
         page-break-inside: avoid;
         margin-bottom: 20px;
+        box-sizing: border-box;
     }
 
     a {
@@ -58,26 +68,39 @@
         page-break-before: always;
     }
 
-    #watermark-print {
-        display: flex; 
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        position: fixed; 
+    #watermark {
+        display: block;
+        position: fixed;
         bottom: 0;
         right: 0;
+
         width: 4cm;
         height: 1cm;
 
+        opacity: 0.4;
+        z-index: 1000;
+    }
+    
+
+    #watermark::after {
+
+        background-color: white;
         border: 3px solid black;
         border-radius: 10px;
-        font-weight: bold;
+
+        content: "Pochea\A Eduard Ionuț";
+        white-space: pre;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         text-align: center;
-        opacity: 0.4;
-            
-        z-index: 10;
-        line-height: 1.2;
+        font-weight: bold;
+
+        font-size: 9pt; 
+        line-height: 1.1;
+
     }
 
 }
