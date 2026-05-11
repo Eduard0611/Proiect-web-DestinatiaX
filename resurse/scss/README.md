@@ -2,9 +2,9 @@
 
 Acesta este un proiect web dezvoltat cu Node.js, Express, EJS și SASS. Mai jos sunt instrucțiunile necesare pentru a-l rula pe o altă mașină.
 
-## Cerințe preliminare
 
-Înainte de toate, asigurați-vă că aveți instalat instalat pe calculatorul d-voastră:
+
+Înainte de toate, asigurați-vă că aveți instalat pe calcultorul d-voastră:
 *   [Node.js](https://nodejs.org/). Instalarea Node.js va adăuga automat și `npm` (Node Package Manager).
 
 ## Instalare
@@ -37,4 +37,3 @@ După ce ați instalat cu succes dependențele, puteți porni serverul.
 2.  Serverul va porni, iar în consolă veți vedea mesajul: `Serverul a pornit!`.
 
 3.  **Deschideți un browser web și accesați adresa:** http://localhost:8080
-

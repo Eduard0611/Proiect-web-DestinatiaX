@@ -210,7 +210,14 @@ app.get("/*pagina", function(req, res){
         return;
     }
     try{
-        res.render("pagini"+req.url, function(err, rezRandare){
+        
+        res.render("pagini"+req.url, {
+            ip: req.ip,
+            imagini: obGlobal.obImagini.imagini
+        }, 
+        function(err, rezRandare) {
+
+
             if (err){
                 if (err.message.includes("Failed to lookup view")){
                     afisareEroare(res,404)
