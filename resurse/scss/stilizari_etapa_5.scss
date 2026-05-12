@@ -23,7 +23,6 @@ hr.separator-dungi {
 	left:0;
 	top:100%;
 	transform-origin:0 0;
-	/*conetaza ordinea transformarilor!*/
 	transform: rotateX(180deg) skew(-45deg) scaleY(0.5) translate(5px,-35px); 
 	opacity:0.55;
     transition: all 0.5s ease-in-out;
@@ -42,4 +41,51 @@ hr.separator-dungi {
 
 #text:hover #text-reflectat{
 	transform: rotateX(180deg) skew(-45deg) scaleY(0.8) translate(5px,-40px); 
+}
+
+
+
+#video-fundal {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+
+.viewport-header {
+    position: relative;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.viewport-header h1 {
+    
+    font-family: 'Syncopate', sans-serif;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1.5vw; 
+    line-height: 1.2;
+    font-size: 3vw;
+    text-align: center;
+
+    span {
+        display: block;
+        color: var(--culoare-accent);
+        font-size: 10vw;
+        letter-spacing: 1vw;
+
+        .x-mare {
+            font-size: 1.5em; 
+            color: white; 
+            display: inline-block; 
+            transform: translateY(7.5%);
+        }
+    }
 }

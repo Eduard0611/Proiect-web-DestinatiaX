@@ -228,7 +228,7 @@ app.get("/*pagina", function(req, res){
             }
             else{
                 res.send(rezRandare);
-                console.log("Rezultat randare", rezRandare);
+                // console.log("Rezultat randare", rezRandare);
             }
         });
     }

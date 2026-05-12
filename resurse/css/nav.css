@@ -3,14 +3,18 @@ nav {
   --latime-buton: 140px;
   --inaltime-buton: 30px;
   --inaltime-pentru-aliniere-buton: 28px;
-  background-color: var(--culoare-contur);
-  border: 1px solid var(--culoare-contur);
+  background-color: transparent;
+  border: 1px solid transparent;
   border-radius: 10px;
-  position: relative;
   margin-top: 10px;
   margin-bottom: 20px;
   margin-left: 10px;
   margin-right: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 
 ul.meniu, ul.meniu ul {
@@ -29,6 +33,7 @@ ul.meniu, ul.meniu ul {
 
 ul.meniu {
   display: flex;
+  justify-content: center;
   position: relative;
 }
 ul.meniu ul {

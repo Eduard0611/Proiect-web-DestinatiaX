@@ -2,6 +2,7 @@ $tranzitie-lenta: 0.7s;
 $tranzitie-medie: 0.5s;
 $raza-border: 10px;
 $margine-jos: 20px;
+$culoare-text-footer: white;
 
 html{
     font-size: 16px;
@@ -36,6 +37,7 @@ body{
 main{
     margin-right: var(--margine-pagina);
     margin-left: var(--margine-pagina);
+    margin-top: 4rem; 
 
     h2{
         margin-top: 0.5rem;
@@ -52,6 +54,16 @@ main{
     margin-bottom: $margine-jos;
 
 }
+
+footer{
+
+    color: $culoare-text-footer;
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
 
 #hamburger, #ch-menu, #watermark {
     display: none;
@@ -200,12 +212,14 @@ main{
     height: 50px;
     border-radius: 50%;
 
-    background-color: var(--culoare-fundal);
+    background-color: transparen;
     transition: all $tranzitie-medie;
     z-index: 10;
 
     &:hover {
         opacity: 1;
+        border-left: 4px solid var(--culoare-text);
+        border-right: 4px solid var(--culoare-text);
     }
 }
 
@@ -222,7 +236,6 @@ main{
     border-bottom-color: var(--culoare-accent);
     transform: translateY(-7px);
 }
-
 
 
 #tab-orar {
@@ -312,8 +325,9 @@ mfrac {
 
 }
 
-main{
-    a:not(#video-promo a){
+main, footer{
+
+    a:not(#video-promo a):not(#link-top){
         background-image: radial-gradient(circle,
             var(--culoare-accent) 0%,
             var(--culoare-accent) 40%,
@@ -341,7 +355,7 @@ main{
             border: 2px solid var(--culoare-contur);
         }
 
-        &[href^="https"]{
+        &[href^="https"], &[href^="mailto"], &[href^="tel"]{
         
             &::before{
                 content: "⮳";

@@ -27,6 +27,7 @@ body > header > h1 {
 main {
   margin-right: var(--margine-pagina);
   margin-left: var(--margine-pagina);
+  margin-top: 4rem;
 }
 main h2 {
   margin-top: 0.5rem;
@@ -40,6 +41,14 @@ main h3 {
 }
 main {
   margin-bottom: 20px;
+}
+
+footer {
+  color: white;
+}
+footer a {
+  text-decoration: none;
+  color: inherit;
 }
 
 #hamburger, #ch-menu, #watermark {
@@ -176,12 +185,14 @@ main {
   justify-content: center;
   height: 50px;
   border-radius: 50%;
-  background-color: var(--culoare-fundal);
+  background-color: transparen;
   transition: all 0.5s;
   z-index: 10;
 }
 #link-top:hover {
   opacity: 1;
+  border-left: 4px solid var(--culoare-text);
+  border-right: 4px solid var(--culoare-text);
 }
 
 .triunghi {
@@ -268,29 +279,29 @@ mfrac {
   min-width: 300px;
 }
 
-main a:not(#video-promo a) {
+main a:not(#video-promo a):not(#link-top), footer a:not(#video-promo a):not(#link-top) {
   background-image: radial-gradient(circle, var(--culoare-accent) 0%, var(--culoare-accent) 40%, var(--culoare-accent) 60%, transparent 80%, transparent 100%);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 0% 0%;
   transition: all 0.5s ease-out;
 }
-main a:not(#video-promo a):visited {
+main a:not(#video-promo a):not(#link-top):visited, footer a:not(#video-promo a):not(#link-top):visited {
   color: var(--culoare-accent);
 }
-main a:not(#video-promo a):hover {
+main a:not(#video-promo a):not(#link-top):hover, footer a:not(#video-promo a):not(#link-top):hover {
   background-size: 100% 100%;
 }
-main a:not(#video-promo a):active {
+main a:not(#video-promo a):not(#link-top):active, footer a:not(#video-promo a):not(#link-top):active {
   border: 2px solid var(--culoare-contur);
 }
-main a:not(#video-promo a)[href^=https]::before {
+main a:not(#video-promo a):not(#link-top)[href^=https]::before, main a:not(#video-promo a):not(#link-top)[href^=mailto]::before, main a:not(#video-promo a):not(#link-top)[href^=tel]::before, footer a:not(#video-promo a):not(#link-top)[href^=https]::before, footer a:not(#video-promo a):not(#link-top)[href^=mailto]::before, footer a:not(#video-promo a):not(#link-top)[href^=tel]::before {
   content: "⮳";
   font-size: 1.5em;
   display: inline-block;
   transition: color 0.5s ease;
 }
-main a:not(#video-promo a)[href^=https]:hover::before {
+main a:not(#video-promo a):not(#link-top)[href^=https]:hover::before, main a:not(#video-promo a):not(#link-top)[href^=mailto]:hover::before, main a:not(#video-promo a):not(#link-top)[href^=tel]:hover::before, footer a:not(#video-promo a):not(#link-top)[href^=https]:hover::before, footer a:not(#video-promo a):not(#link-top)[href^=mailto]:hover::before, footer a:not(#video-promo a):not(#link-top)[href^=tel]:hover::before {
   color: var(--culoare-accent);
 }
 

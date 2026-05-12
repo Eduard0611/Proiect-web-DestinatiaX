@@ -4,15 +4,22 @@
     --latime-buton: 140px;
     --inaltime-buton: 30px;
     --inaltime-pentru-aliniere-buton: 28px; // inaltime-buton - border sus si jos (2)
-    background-color: var(--culoare-contur);
+    background-color: transparent;
 
-    border: 1px solid var(--culoare-contur);
+    border: 1px solid transparent;
     border-radius: 10px;
-    position: relative;
+    // position: relative;
     margin-top: $margine-nav;
     margin-bottom: 20px;
     margin-left: $margine-nav;
     margin-right: $margine-nav;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+
 } 
  
 
@@ -34,8 +41,8 @@ ul.meniu, ul.meniu ul{
 }
 
 ul.meniu{
-
     display: flex;
+    justify-content: center;
     position: relative;
 
     ul {
