@@ -2,6 +2,12 @@
   margin-bottom: 30px;
 }
 
+#galerie img {
+  width: 40%;
+  min-width: 250px;
+  max-width: 500px;
+}
+
 #galerie {
   counter-reset: count 0;
   width: 100%;
@@ -17,10 +23,16 @@
   align-items: center;
   text-align: center;
 }
+#galerie figcaption p {
+  font-size: 0.75em;
+  opacity: 0.8;
+  font-style: italic;
+}
 
 #gr {
   display: grid;
   gap: 20px;
+  margin-top: 20px;
   grid-template-columns: repeat(3, 1fr);
 }
 #gr figure:nth-of-type(1) {
@@ -83,4 +95,41 @@
   #gr {
     grid-template-columns: 1fr;
   }
+}
+.imagine-duotone {
+  width: 100%;
+  max-width: 400px;
+  height: 250px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  background-image: url("/resurse/imagini/galerie/paris.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  transition: filter 1s ease-in-out;
+}
+.imagine-duotone::before, .imagine-duotone::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 1s ease-in-out;
+}
+.imagine-duotone::before {
+  background-color: var(--culoare-contur);
+  mix-blend-mode: lighten;
+}
+.imagine-duotone::after {
+  background-color: var(--culoare-accent);
+  mix-blend-mode: multiply;
+}
+.imagine-duotone:hover {
+  filter: grayscale(100%);
+}
+.imagine-duotone:hover::before, .imagine-duotone:hover::after {
+  opacity: 0;
 }

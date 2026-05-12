@@ -1,8 +1,15 @@
 @use "sass:math";
 
+$raza-border: 10px;
 
 #galerie h2{
     margin-bottom: 30px;
+}
+
+#galerie img{
+    width: 40%;
+    min-width: 250px;
+    max-width: 500px;
 }
 
 #galerie{
@@ -25,13 +32,21 @@
             text-align: center;
         }
     }
-    
+
+    figcaption{
+        p{
+            font-size: 0.75em;
+            opacity: 0.8;
+            font-style: italic;
+        }
+    }
 }
 
 #gr {
     
     display: grid;
     gap: 20px; 
+    margin-top: 20px;
     
     grid-template-columns: repeat(3, 1fr);
         
@@ -86,6 +101,8 @@
     background-color: white;
 }
 
+
+
 @media screen and (max-width: 1000px) {
     #gr{
         grid-template-columns: repeat(2, 1fr);
@@ -99,5 +116,57 @@
 @media screen and (max-width: 700px) {
     #gr{
         grid-template-columns: 1fr;
+    }
+}
+
+
+
+.imagine-duotone {
+
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    margin: 0 auto; // Centrarea imaginii
+    margin-bottom: 30px;
+    border-radius: $raza-border;
+    
+
+    background-image: url('/resurse/imagini/galerie/paris.jpg');
+    background-size: cover;
+    background-position: center;
+    
+
+    position: relative; 
+    overflow: hidden;
+    
+    transition: filter 1s ease-in-out;
+    
+    &::before, &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: all 1s ease-in-out;
+    }
+
+
+    &::before {
+        background-color: var(--culoare-contur); 
+        mix-blend-mode: lighten; 
+    }
+
+    &::after {
+        background-color: var(--culoare-accent); 
+        mix-blend-mode: multiply;
+    }
+
+    &:hover {
+
+        filter: grayscale(100%);
+        &::before, &::after {
+            opacity: 0;
+        }
     }
 }

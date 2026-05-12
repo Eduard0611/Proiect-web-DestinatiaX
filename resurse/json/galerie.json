@@ -2,6 +2,53 @@
 	"cale_galerie":"resurse/imagini/galerie",
 	"imagini": [
 		{
+			"cale_imagine":"notre-dame.jpg",
+			"titlu": "Paris",
+			"descriere":"Notre-Dame - Paris",
+			"sfert_ora":"1",
+			"licenta": "CC BY-SA 4.0",
+			"autor": "Antonin Subtil",
+			"link_autor": "https://commons.wikimedia.org/wiki/File:Cath%C3%A9drale_Notre_Dame,_Paris_30_September_2015.jpg"
+
+		},
+				{
+			"cale_imagine":"notre-dame.jpg",
+			"titlu": "Paris",
+			"descriere":"Notre-Dame - Paris",
+			"sfert_ora":"2",
+			"licenta": "CC BY-SA 4.0",
+			"autor": "Antonin Subtil",
+			"link_autor": "https://commons.wikimedia.org/wiki/File:Cath%C3%A9drale_Notre_Dame,_Paris_30_September_2015.jpg"
+
+		},
+				{
+			"cale_imagine":"notre-dame.jpg",
+			"titlu": "Paris",
+			"descriere":"Notre-Dame - Paris",
+			"sfert_ora":"3",
+			"licenta": "CC BY-SA 4.0",
+			"autor": "Antonin Subtil",
+			"link_autor": "https://commons.wikimedia.org/wiki/File:Cath%C3%A9drale_Notre_Dame,_Paris_30_September_2015.jpg"
+
+		},
+				{
+			"cale_imagine":"notre-dame.jpg",
+			"titlu": "Paris",
+			"descriere":"Notre-Dame - Paris",
+			"sfert_ora":"4",
+			"licenta": "CC BY-SA 4.0",
+			"autor": "Antonin Subtil",
+			"link_autor": "https://commons.wikimedia.org/wiki/File:Cath%C3%A9drale_Notre_Dame,_Paris_30_September_2015.jpg"
+
+		},
+
+
+
+
+
+
+
+		{
 			"cale_imagine":"barcelona.jpg",
 			"titlu": "Spania",
 			"descriere":"Sagrada Familia - Barcelona ",
@@ -21,7 +68,7 @@
 			"sfert_ora":"3"
 		},
 		{
-			"cale_imagine":"paris-mare.jpg",
+			"cale_imagine":"paris.jpg",
 			"titlu": "Franța",
 			"descriere":"Turnul Eiffel - Paris",
 			"sfert_ora":"4"
@@ -89,7 +136,7 @@
 			"sfert_ora":"1"
 		},
 		{
-			"cale_imagine":"paris-mare.jpg",
+			"cale_imagine":"paris.jpg",
 			"titlu": "Franța",
 			"descriere":"Turnul Eiffel - Paris",
 			"sfert_ora":"2"
@@ -156,7 +203,7 @@
 			"sfert_ora":"3"
 		},
 		{
-			"cale_imagine":"paris-mare.jpg",
+			"cale_imagine":"paris.jpg",
 			"titlu": "Franța",
 			"descriere":"Turnul Eiffel - Paris",
 			"sfert_ora":"4"
@@ -224,7 +271,7 @@
 			"sfert_ora":"1"
 		},
 		{
-			"cale_imagine":"paris-mare.jpg",
+			"cale_imagine":"paris.jpg",
 			"titlu": "Franța",
 			"descriere":"Turnul Eiffel - Paris",
 			"sfert_ora":"2"

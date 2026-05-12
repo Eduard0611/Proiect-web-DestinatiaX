@@ -108,12 +108,6 @@ main {
   grid-area: zona8;
 }
 
-#galerie img {
-  width: 40%;
-  min-width: 250px;
-  max-width: 500px;
-}
-
 .chewy-regular {
   font-family: "Chewy", system-ui;
   font-weight: 400;

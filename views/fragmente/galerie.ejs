@@ -1,13 +1,19 @@
 <section id="galerie">
 
-
-
-
-
-    
     <h2>Galerie Destinații Populare</h2>
 
+    <section id="sectiune-duotone">
+        <h3>Efect Duotone</h3>
+        <p>Adu cursorul peste imagine pentru a o transforma în alb-negru.</p>
+        
+        <div class="imagine-duotone"></div>
+
+    </section>
+
+    <h3>Galerie Statica</h3>
+
     <div id="gr">
+
     <%
         let minutulCurent= (new  Date()).getMinutes();  
         let sfertCurent= Math.floor(minutulCurent / 15) + 1;
@@ -29,7 +35,20 @@
                         <source srcset="<%- imag.cale_imagine_medie %>" media="screen and (max-width: 1100px)">
                         <source srcset="<%- imag.cale_imagine_mic %>" media="screen and (max-width: 700px)">
                         <img src="<%- imag.cale_imagine %>" title="<%- imag.titlu %>" alt="<%- imag.titlu %>" width="370" height= "auto" />
-                        <figcaption> <%- imag.descriere %> </figcaption>
+                        <figcaption> 
+                            
+                            <%- imag.descriere %>
+
+                            <% if(imag.autor && imag.licenta) { %>
+
+                                <p class= "proprietar-imagine"> 
+                                    &copy; Imagine de <a href="<%- imag.link_autor%>" target="_blank" > <%- imag.autor%> </a>
+                                    <br> (Licență: <%- imag.licenta%>)
+                                </p>
+
+                            <% } %>
+
+                        </figcaption>
                     </picture>
                 </figure>
 
