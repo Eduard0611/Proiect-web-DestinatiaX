@@ -19,7 +19,7 @@ body > header > h1 {
   margin-left: 10px;
 }
 
-#video-promo iframe, #grid-pagina > * {
+#video-promo iframe, #resurse-utile object, #grid-pagina > * {
   border: 1px solid var(--culoare-contur);
   border-radius: 10px;
 }

@@ -66,6 +66,10 @@ main{
     
 }
 
+#resurse-utile object{
+    @extend %contur-rotunjit;
+}
+
 #welcome {
     grid-area: zona1;
     background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.8)), 
