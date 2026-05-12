@@ -1,0 +1,17 @@
+hr.separator-dungi {
+    border: none;
+    
+    height: 15px; 
+    width: 95%; 
+    margin: 3rem auto; 
+    
+    border-radius: 10px; 
+    
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--culoare-accent) 0px,
+        var(--culoare-accent) 2px,      
+        transparent 2px,                 
+        transparent 4px                
+    );
+}
