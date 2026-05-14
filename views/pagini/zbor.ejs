@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <meta name="keywords" content="bilete de avion, destinatia visurilor, vacanta ieftina, zboruri confortabile, DestinatiaX">
+        <meta name="description" content="DestinatiaX oferă cele mai ieftine bilete de avion spre destinatia visurilor tale. Planifică-ți vacanța simplu și rapid.">
+           
+        <title>DestinatiaX - <%- locals.zbor.titlu_zbor %></title>
+        <%- include("../fragmente/head") %>     
+        <link href="/resurse/css/zborus.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body id="body-zbor">
+        <%- include("../fragmente/header") %>
+
+    <main style="--imagine-fundal: url('/resurse/imagini/zboruri/<%= zbor.imagine %>');">
+
+        <section>
+            <h2>
+                Destinația<b class="x-mare">X</b>
+            </h2>
+                <article id="art-produs">
+
+                    <h3><span class="nume"><%- locals.zbor.titlu_zbor %></span></h3>
+                    
+
+
+                    <article class="produs-zbor">
+                        <div class="zona-plecare">
+                            <span class="oras"><%- zbor.oras_plecare %> <i class="fa-solid fa-plane-departure"></i></span>
+                            <span class="data"><%- new Date(zbor.data_plecare).toLocaleString('ro-RO') %></span>
+                        </div>
+
+                        <div class="zona-centrala">
+                            <h3 class="cumpara">Cumpără</h3>
+                            <div class="pret-zbor"><%- zbor.pret %> EUR</div>
+                        </div>
+
+                        <div class="zona-sosire">
+                            <span class="oras"><i class="fa-solid fa-plane-arrival"></i> <%- zbor.oras_sosire %></span>
+                            <span class="data"><%- new Date(zbor.data_sosire).toLocaleString('ro-RO') %></span>
+                        </div>
+
+                        <input type="checkbox" class="select-cos" value="<%-zbor.id %>">
+                    </article>
+
+                    <!-- <p>Oraș de plecare: <span class="categorie"><%- locals.zbor.oras_plecare %> </span></p>
+                    <p>Oraș de sosire: <span class="categorie"><%- locals.zbor.oras_sosire %> </span></p>
+                    <p>Data de plecare: <span class="calorii"><%- new Date(locals.zbor.data_plecare).toLocaleString('ro-RO') %> </span></p>
+                    <p>Data de sosire: <span class="gramaj"><%- new Date(locals.zbor.data_sosire).toLocaleString('ro-RO') %> </span></p>
+                    <p>Pret: <span class="pret"><%- locals.zbor.pret %> </span></p> -->
+
+                    <p>Descriere: <span class="descriere"><%- locals.zbor.descriere %> </span></p>
+                    <p>Locuri disponibile: <span class="ingrediente"><%- locals.zbor.locuri_disponibile %> </span></p>
+                    
+                    <p>Categorie: <span class="categorie"><%- locals.zbor.clasa %> </span></p>
+                    <p>Compania responsabilă: <span class="pt_diabetici"><%- locals.zbor.companie_aeriana %> </span></p>
+                    <p>Zbor internațional: 
+                        
+                        
+                            <% if(locals.zbor.zbor_international)  {  %>  
+                                <span class="pt_diabetici"> Da, o să ai nevoie de pașaport! </span>  
+                            <% } else { %>
+                                <span class="pt_diabetici"> Nu, poți călători cu C.I. ! </span>
+                        <% } %>
+                    </p>
+
+
+                    <figure class="container-imagine">
+                                <img src="/resurse/imagini/zboruri/<%- zbor.imagine %>" alt="[imagine <%- zbor.titlu_zbor %>]" />
+                    </figure>   
+                </article>
+            
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    </body>
+</html>

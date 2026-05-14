@@ -44,7 +44,8 @@ hr.separator-dungi {
 
 .viewport-header {
   position: relative;
-  height: 100vh;
+  height: 80vh;
+  margin-bottom: 15vh;
   text-align: center;
   display: flex;
   align-items: center;
@@ -63,12 +64,24 @@ hr.separator-dungi {
 .viewport-header h1 span {
   display: block;
   color: var(--culoare-accent);
-  font-size: 10vw;
+  font-size: 9vw;
   letter-spacing: 1vw;
 }
 .viewport-header h1 span .x-mare {
   font-size: 1.5em;
   color: white;
   display: inline-block;
-  transform: translateY(7.5%);
+  transform: translateY(8%);
+}
+
+#main-pagina-separata-erori {
+  border: 1px solid var(--culoare-contur);
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px var(--culoare-contur);
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }

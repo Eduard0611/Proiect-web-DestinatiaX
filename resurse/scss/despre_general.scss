@@ -1,0 +1,13 @@
+#main-despre{
+    border: 1px solid var(--culoare-contur);
+    border-radius: 10px; 
+
+    box-shadow: 0px 0px 5px var(--culoare-contur);
+    padding: 20px;
+    background-color: white;
+    display: flex;
+
+    align-items: center;
+    flex-direction: column;
+    text-align: center; 
+}

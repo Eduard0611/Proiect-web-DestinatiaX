@@ -176,8 +176,8 @@ footer a {
   opacity: 0.7;
   right: 0.3em;
   width: 3rem;
-  border-left: 4px solid var(--culoare-contur);
-  border-right: 4px solid var(--culoare-contur);
+  border-left: 4px solid white;
+  border-right: 4px solid white;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
   display: flex;
@@ -279,29 +279,29 @@ mfrac {
   min-width: 300px;
 }
 
-main a:not(#video-promo a):not(#link-top), footer a:not(#video-promo a):not(#link-top) {
+main a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare), footer a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare) {
   background-image: radial-gradient(circle, var(--culoare-accent) 0%, var(--culoare-accent) 40%, var(--culoare-accent) 60%, transparent 80%, transparent 100%);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 0% 0%;
   transition: all 0.5s ease-out;
 }
-main a:not(#video-promo a):not(#link-top):visited, footer a:not(#video-promo a):not(#link-top):visited {
+main a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare):visited, footer a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare):visited {
   color: var(--culoare-accent);
 }
-main a:not(#video-promo a):not(#link-top):hover, footer a:not(#video-promo a):not(#link-top):hover {
+main a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare):hover, footer a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare):hover {
   background-size: 100% 100%;
 }
-main a:not(#video-promo a):not(#link-top):active, footer a:not(#video-promo a):not(#link-top):active {
+main a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare):active, footer a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare):active {
   border: 2px solid var(--culoare-contur);
 }
-main a:not(#video-promo a):not(#link-top)[href^=https]::before, main a:not(#video-promo a):not(#link-top)[href^=mailto]::before, main a:not(#video-promo a):not(#link-top)[href^=tel]::before, footer a:not(#video-promo a):not(#link-top)[href^=https]::before, footer a:not(#video-promo a):not(#link-top)[href^=mailto]::before, footer a:not(#video-promo a):not(#link-top)[href^=tel]::before {
+main a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare)[href^=https]::before, main a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare)[href^=mailto]::before, main a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare)[href^=tel]::before, footer a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare)[href^=https]::before, footer a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare)[href^=mailto]::before, footer a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare)[href^=tel]::before {
   content: "⮳";
   font-size: 1.5em;
   display: inline-block;
   transition: color 0.5s ease;
 }
-main a:not(#video-promo a):not(#link-top)[href^=https]:hover::before, main a:not(#video-promo a):not(#link-top)[href^=mailto]:hover::before, main a:not(#video-promo a):not(#link-top)[href^=tel]:hover::before, footer a:not(#video-promo a):not(#link-top)[href^=https]:hover::before, footer a:not(#video-promo a):not(#link-top)[href^=mailto]:hover::before, footer a:not(#video-promo a):not(#link-top)[href^=tel]:hover::before {
+main a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare)[href^=https]:hover::before, main a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare)[href^=mailto]:hover::before, main a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare)[href^=tel]:hover::before, footer a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare)[href^=https]:hover::before, footer a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare)[href^=mailto]:hover::before, footer a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare)[href^=tel]:hover::before {
   color: var(--culoare-accent);
 }
 

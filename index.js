@@ -4,6 +4,9 @@ const fs= require("fs");
 const sass= require("sass");
 const sharp= require("sharp");
 
+// const ejs= require("ejs");
+const pg= require("pg");
+
 app= express();
 app.set("view engine", "ejs")
 
@@ -19,6 +22,34 @@ obGlobal= {
 console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
+
+
+// Conectarea la baza de date
+
+client= new pg.Client({
+    database: "destinatiax_bd",
+    user: "admin_destinatiax",
+    password: "parola",
+    host: "localhost",
+    port: 5432,
+});
+
+
+client.connect()
+    .then(() => console.log("Conectat cu succes la baza de date!"))
+    .catch(err => console.error("Eroare la conectare: ", err.stack));
+
+// client.query("select * from zboruri where id > 3", function(err, rez){
+//     if (err){
+//         console.log("Eroare", err)
+//     }
+//     else {
+//         // console.log(rez)
+//     }
+// });
+
+
+
 
 
 let vect_foldere=[ "temp", "logs", "backup", "fisiere_uploadate" ]
@@ -53,6 +84,100 @@ app.get(["/", "/index", "/home"], function (req, res){
 app.get("/despre", function (req, res){
     res.render("pagini/despre");
 });
+
+
+// app.get("/produse", function (req, res){
+
+//     let clauzaWhere= ""
+
+//     if(req.query.tip){
+//         clauzaWhere=`where tip_produs='${req.query.tip}'`
+//     }
+
+//     client.query(`select * from prajituri ${clauzaWhere}`, function(err, rez){
+
+//         if (err){
+//             console.log("Eroare", err)
+//             afisareEroare(rez, 2)
+//         }
+//         else {
+
+//             res.render("pagini/produse", {
+//                 produse: rez.rows,
+//                 optiuni: []
+//             })
+//         }
+//     });
+// });
+
+// app.get("/produs/:id", function (req, res){
+
+//     client.query(`select * from prajituri where id = ${req.params.id}`, function(err, rez){
+
+//         if (err){
+//             console.log("Eroare", err)
+//             afisareEroare(rez, 2)
+//         }
+//         else {
+//             if(rez.rowCount == 0){
+//                 afisareEroare(res, 404, "Produsul nu a fost găsit!!!")
+//             }
+//             else{
+//                 res.render("pagini/produs", {
+//                     prod: rez.rows[0],
+//                 })
+//             }
+//         }
+//     });
+// });
+
+
+app.get("/zboruri", function (req, res){
+
+    let clauzaWhere= ""
+
+    if(req.query.tip){
+        clauzaWhere=`where continent='${req.query.tip}'`
+    }
+
+    client.query(`select * from zboruri ${clauzaWhere}`, function(err, rez){
+
+        if (err){
+            console.log("Eroare", err)
+            afisareEroare(rez, 2)
+        }
+        else {
+
+            res.render("pagini/zboruri", {
+                zboruri: rez.rows,
+                optiuni: []
+            })
+        }
+    });
+});
+
+app.get("/zbor/:id", function (req, res){
+
+    client.query(`select * from zboruri where id = ${req.params.id}`, function(err, rez){
+
+        if (err){
+            console.log("Eroare", err)
+            afisareEroare(rez, 2)
+        }
+        else {
+            if(rez.rowCount == 0){
+                afisareEroare(res, 404, "Zborul nu a fost găsit!!!")
+            }
+            else{
+                res.render("pagini/zbor", {
+                    zbor: rez.rows[0],
+                })
+            }
+        }
+    });
+});
+
+
 
 
 function initErori(){

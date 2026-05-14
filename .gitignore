@@ -14,3 +14,11 @@ backup/
 temp/
 logs/
 fisiere_uploadate/
+
+
+# Astea sunt cele adaugate
+resurse/css/produse.css
+views/pagini/produs.ejs
+views/pagini/produse.ejs
+Script_Exemplu_Curs.sql
+resurse/imagini/zboruri/Poza_unresize/
