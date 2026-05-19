@@ -42,8 +42,8 @@
             </div>
 
             <label> Buget maxim (EUR): 
-                <input type="range" id="inp-pret" value="2000" min="0" max="2500" step="50"> 
-                <span id="infoRange">(2000)</span>
+                <input type="range" id="inp-pret" value="0" min="0" max="2500" step="50"> 
+                <span id="infoRange">(0)</span>
             </label>
             
             <label>Clasa de zbor:
@@ -95,6 +95,10 @@
                                 <div class="zona-centrala">
                                     <h3 class="titlu-zbor"><%- zbor.titlu_zbor %></h3>
                                     <p class="continent">Continent: <%- zbor.continent %></p>
+                                    
+                                    <p>Escală: <span class="val-escala"><%- zbor.tip_zbor %></span></p>
+                                    <p>Clasa: <span class="val-clasa"><%- zbor.clasa %></span></p>
+                                    
                                     <figure class="container-imagine">
                                         <img src="/resurse/imagini/zboruri/<%- zbor.imagine %>" alt="[imagine <%- zbor.titlu_zbor %>]" />
                                     </figure>
