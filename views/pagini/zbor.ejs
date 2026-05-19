@@ -20,13 +20,24 @@
                 <article id="art-produs">
 
                     <h3><span class="nume"><%- locals.zbor.titlu_zbor %></span></h3>
-                    
+
+                    <%
+                        const zile = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+                        const luni = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
+                        
+                        let dPlecare = new Date(zbor.data_plecare);
+                        let dSosire = new Date(zbor.data_sosire);
+                    %>
 
 
                     <article class="produs-zbor">
                         <div class="zona-plecare">
                             <span class="oras"><%- zbor.oras_plecare %> <i class="fa-solid fa-plane-departure"></i></span>
-                            <span class="data"><%- new Date(zbor.data_plecare).toLocaleString('ro-RO') %></span>
+                            <span class="data">
+                                <time datetime="<%= dPlecare.toISOString() %>">
+                                    <%= zile[dPlecare.getDay()] %>, <%= dPlecare.getDate() %>-<%= luni[dPlecare.getMonth()] %>-<%= dPlecare.getFullYear() %>
+                                </time>
+                            </span>
                         </div>
 
                         <div class="zona-centrala">
@@ -36,7 +47,13 @@
 
                         <div class="zona-sosire">
                             <span class="oras"><i class="fa-solid fa-plane-arrival"></i> <%- zbor.oras_sosire %></span>
-                            <span class="data"><%- new Date(zbor.data_sosire).toLocaleString('ro-RO') %></span>
+                            
+                            <span class="data">
+                                <time datetime="<%= dSosire.toISOString() %>">
+                                    <%= zile[dSosire.getDay()] %>, <%= dSosire.getDate() %>-<%= luni[dSosire.getMonth()] %>-<%= dSosire.getFullYear() %>
+                                </time>
+                            </span>
+                            
                         </div>
 
                         <input type="checkbox" class="select-cos" value="<%-zbor.id %>">

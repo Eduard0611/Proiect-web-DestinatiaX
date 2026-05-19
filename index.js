@@ -86,50 +86,50 @@ app.get("/despre", function (req, res){
 });
 
 
-// app.get("/produse", function (req, res){
+app.get("/produse", function (req, res){
 
-//     let clauzaWhere= ""
+    let clauzaWhere= ""
 
-//     if(req.query.tip){
-//         clauzaWhere=`where tip_produs='${req.query.tip}'`
-//     }
+    if(req.query.tip){
+        clauzaWhere=`where tip_produs='${req.query.tip}'`
+    }
 
-//     client.query(`select * from prajituri ${clauzaWhere}`, function(err, rez){
+    client.query(`select * from prajituri ${clauzaWhere}`, function(err, rez){
 
-//         if (err){
-//             console.log("Eroare", err)
-//             afisareEroare(rez, 2)
-//         }
-//         else {
+        if (err){
+            console.log("Eroare", err)
+            afisareEroare(rez, 2)
+        }
+        else {
 
-//             res.render("pagini/produse", {
-//                 produse: rez.rows,
-//                 optiuni: []
-//             })
-//         }
-//     });
-// });
+            res.render("pagini/produse", {
+                produse: rez.rows,
+                optiuni: []
+            })
+        }
+    });
+});
 
-// app.get("/produs/:id", function (req, res){
+app.get("/produs/:id", function (req, res){
 
-//     client.query(`select * from prajituri where id = ${req.params.id}`, function(err, rez){
+    client.query(`select * from prajituri where id = ${req.params.id}`, function(err, rez){
 
-//         if (err){
-//             console.log("Eroare", err)
-//             afisareEroare(rez, 2)
-//         }
-//         else {
-//             if(rez.rowCount == 0){
-//                 afisareEroare(res, 404, "Produsul nu a fost găsit!!!")
-//             }
-//             else{
-//                 res.render("pagini/produs", {
-//                     prod: rez.rows[0],
-//                 })
-//             }
-//         }
-//     });
-// });
+        if (err){
+            console.log("Eroare", err)
+            afisareEroare(rez, 2)
+        }
+        else {
+            if(rez.rowCount == 0){
+                afisareEroare(res, 404, "Produsul nu a fost găsit!!!")
+            }
+            else{
+                res.render("pagini/produs", {
+                    prod: rez.rows[0],
+                })
+            }
+        }
+    });
+});
 
 
 app.get("/zboruri", function (req, res){
@@ -143,16 +143,23 @@ app.get("/zboruri", function (req, res){
     client.query(`select * from zboruri ${clauzaWhere}`, function(err, rez){
 
         if (err){
-            console.log("Eroare", err)
-            afisareEroare(rez, 2)
+            console.log("Eroare extragere zboruri", err)
+            afisareEroare(res, 2)
+            return;
         }
-        else {
+        
+        client.query(`select distinct tip_zbor as valoare from zboruri`, function(err, rezOptiuni){
+            if (err){
+                console.log("Eroare extragere clase zbor", err);
+                afisareEroare(res, 2);
+                return;
+            }
 
             res.render("pagini/zboruri", {
                 zboruri: rez.rows,
-                optiuni: []
-            })
-        }
+                optiuni: rezOptiuni.rows
+            });
+        });
     });
 });
 
@@ -192,13 +199,11 @@ function initErori(){
 initErori()
 
 function afisareEroare(res, identificator, titlu, text, imagine){
-    //TO DO cautam eroarea dupa identificator
+
     let eroare= obGlobal.obErori.info_erori.find((elem) =>
         elem.identificator==identificator
     );
-    //daca sunt setate titlu, text, imagine, le folosim, 
-    //altfel folosim cele din fisierul json pentru eroarea gasita
-    //daca nu o gasim, afisam eroarea default
+
     let errDefault= obGlobal.obErori.eroare_default;
 
     if (eroare?.status)
@@ -274,9 +279,9 @@ initImagini();
 function compileazaScss(caleScss, caleCss){
     if(!caleCss){
 
-        let numeFisExt=path.basename(caleScss); // "folder1/folder2/a.scss" -> "a.scss"
-        let numeFis=numeFisExt.split(".")[0]   /// "a.scss"  -> ["a","scss"]
-        caleCss=numeFis+".css"; // output: a.css
+        let numeFisExt=path.basename(caleScss); 
+        let numeFis=numeFisExt.split(".")[0]  
+        caleCss=numeFis+".css"; 
     }
     
     if (!path.isAbsolute(caleScss))
@@ -299,6 +304,7 @@ function compileazaScss(caleScss, caleCss){
     rez=sass.compile(caleScss, {"sourceMap":true,
         silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function']
     });
+    
     fs.writeFileSync(caleCss,rez.css)
     
 }

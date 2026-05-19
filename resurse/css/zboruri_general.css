@@ -1,4 +1,4 @@
-#body-zbor .produs-zbor, #body-zbor main, #body-zboruri .produs-zbor, #body-zboruri #filtre {
+#body-zbor .produs-zbor, #body-zbor main, #body-zboruri .zboruri, #body-zboruri #filtre {
   border: 1px solid var(--culoare-contur);
   border-radius: 10px;
   box-shadow: 0px 0px 5px var(--culoare-contur);
@@ -6,7 +6,7 @@
   background-color: var(--culoare-fundal);
 }
 
-.select-cos, #filtre {
+.select-cos {
   display: none;
 }
 
@@ -16,54 +16,51 @@
   flex-direction: column;
   text-align: center;
 }
-#body-zboruri .select-cos, #body-zboruri #filtre {
-  display: none;
-}
 #body-zboruri h2 {
   margin-top: 0.5rem;
   color: white;
 }
-#body-zboruri .produs-zbor {
+#body-zboruri .zboruri {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
   transition: transform 0.4s linear;
   margin-bottom: 20px;
 }
-#body-zboruri .produs-zbor .zona-centrala {
+#body-zboruri .zboruri .zona-centrala {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
-#body-zboruri .produs-zbor figure img {
+#body-zboruri .zboruri figure img {
   width: 30%;
   height: 100px;
   min-width: 250px;
   max-width: 500px;
   border-radius: 10px;
 }
-#body-zboruri .produs-zbor .zona-plecare, #body-zboruri .produs-zbor .zona-sosire {
+#body-zboruri .zboruri .zona-plecare, #body-zboruri .zboruri .zona-sosire {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
-#body-zboruri .produs-zbor .zona-plecare .oras, #body-zboruri .produs-zbor .zona-sosire .oras {
+#body-zboruri .zboruri .zona-plecare .oras, #body-zboruri .zboruri .zona-sosire .oras {
   font-weight: bold;
   font-size: 1.2rem;
 }
-#body-zboruri .produs-zbor .zona-plecare .data, #body-zboruri .produs-zbor .zona-sosire .data {
+#body-zboruri .zboruri .zona-plecare .data, #body-zboruri .zboruri .zona-sosire .data {
   color: #666;
   font-size: 0.9rem;
 }
-#body-zboruri .produs-zbor .zona-plecare {
+#body-zboruri .zboruri .zona-plecare {
   align-items: flex-start;
 }
-#body-zboruri .produs-zbor .zona-sosire {
+#body-zboruri .zboruri .zona-sosire {
   align-items: flex-end;
 }
-#body-zboruri .produs-zbor:hover {
+#body-zboruri .zboruri:hover {
   transform: scale(1.05);
 }
 #body-zboruri #produse a {

@@ -8,7 +8,7 @@
     background-color: var(--culoare-fundal);
 }
 
-.select-cos, #filtre{
+.select-cos{
     display: none;
 }
 
@@ -26,9 +26,6 @@
         text-align: center;
     }
 
-    .select-cos, #filtre{
-        display: none;
-    }
 
     h2{ //trebuie stilizat
         margin-top: 0.5rem;
@@ -36,7 +33,7 @@
  
     }
 
-    .produs-zbor{
+    .zboruri{
 
         display: grid;
         grid-template-columns: 1fr 2fr 1fr; // Stânga, Mijloc, Dreapta
@@ -49,7 +46,6 @@
         
 
         @extend %container-rotunjit;
-
 
         .zona-centrala{
             margin: 0 auto;
@@ -154,7 +150,7 @@
 
 
         display: grid;
-        grid-template-columns: 1fr 2fr 1fr; // Stânga, Mijloc, Dreapta
+        grid-template-columns: 1fr 2fr 1fr;
         align-items: center;
 
         margin-bottom : 20px;

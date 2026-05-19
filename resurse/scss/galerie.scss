@@ -14,9 +14,9 @@ $raza-border: 10px;
 }
 
 #galerie{
+
     counter-reset: count 0;
     width: 100%;
-
 
     figcaption::before{
         content: counter(count, upper-roman)". ";
@@ -127,7 +127,7 @@ $raza-border: 10px;
     width: 100%;
     max-width: 400px;
     height: 250px;
-    margin: 0 auto; // Centrarea imaginii
+    margin: 0 auto;
     margin-bottom: 30px;
     border-radius: $raza-border;
     

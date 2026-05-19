@@ -78,8 +78,12 @@ footer{
     
 }
 
-#resurse-utile object{
-    @extend %contur-rotunjit;
+#resurse-utile 
+{    
+
+    object{
+        @extend %contur-rotunjit;
+    }
 }
 
 #welcome {
@@ -212,7 +216,7 @@ footer{
     height: 50px;
     border-radius: 50%;
 
-    background-color: transparen;
+    background-color: transparent;
     transition: all $tranzitie-medie;
     z-index: 10;
 
@@ -322,16 +326,14 @@ mfrac {
     max-width: 800px;
     min-width: 300px;
     
-
 }
 
 main, footer{
 
-    a:not(#video-promo a):not(#link-top):not(a.link-fara-stilizare){
+    a:not(a.link-fara-stilizare){
         background-image: radial-gradient(circle,
             var(--culoare-accent) 0%,
             var(--culoare-accent) 40%,
-            var(--culoare-accent) 60%,
             transparent 80%,
             transparent 100%
         );

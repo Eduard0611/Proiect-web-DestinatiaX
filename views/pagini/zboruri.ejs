@@ -7,6 +7,9 @@
     
     <%- include('../fragmente/head.ejs') %>
 
+    <script type="text/javascript" src=/resurse/js/zboruri.js></script>
+    <script type="text/javascript" src=/resurse/js/zboruri-cos.js></script>
+
 </head>
 <body id="body-zboruri">
     
@@ -16,65 +19,82 @@
 
     <main>
         <div id="filtre">
-            <label> Unde vrei să călatorești: <input type="text" id="inp-nume"></label>
+            <label> Unde vrei să călătorești (Destinație): 
+                <input type="text" id="inp-destinatie" placeholder="ex: Paris, Tokyo">
+            </label>
 
-            <label> Suma maximă pusă la saltea pt aceasta vacanță: <input type="number" id="buget-maxim" value="10000"></label>
-
-            <div> Aici se vede cine călătorește cu stil sau nu:<!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
-                <p><label>Economy (preț &lt; 100EUR)
-                    <input id="i_rad1"  name="gr_rad" value="0:350" type="radio"/>
+            <div> Preferințe de zbor:
+                <p><label>Zbor Direct
+                    <input id="i_rad1" name="gr_rad" value="Direct" type="radio"/>
                 </label></p>
-                <p><label>Premium Economy (100EUR &le; preț &lt; 250EUR)
-                    <input id="i_rad2"  name="gr_rad" value="350:700" type="radio"/>
+                
+                <p><label>1 Escală
+                    <input id="i_rad2" name="gr_rad" value="1 Escala" type="radio"/>
                 </label></p>
-                <p><label>Business (250EUR &le; preț &le; 450EUR)
-                    <input id="i_rad3" name="gr_rad" value="700:1000000000" type="radio"/>
+                
+                <p><label>2+ Escale
+                    <input id="i_rad3" name="gr_rad" value="2+ Escale" type="radio"/>
                 </label></p>
-                <p><label>First Class (450EUR &le; preț &le; 1000EUR)
-                    <input id="i_rad3" name="gr_rad" value="700:1000000000" type="radio"/>
-                </label></p>
+                
                 <p><label>Toate
                     <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
                 </label></p>
             </div>
 
-
-            <label> Locuri disponibile: <input type="range" id="inp-pret" value="0" min="0"  max="70"> <span id="infoRange">(0)</span></label>
-            <label>Select simplu:
+            <label> Buget maxim (EUR): 
+                <input type="range" id="inp-pret" value="2000" min="0" max="2500" step="50"> 
+                <span id="infoRange">(2000)</span>
+            </label>
+            
+            <label>Clasa de zbor:
                 <select id="inp-categorie">
                     <option id="sel-toate" selected value="toate">toate</option>
-                    <% for (let opt of locals.optiuni) { %>
-                        <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                    <% for (let optiune of locals.optiuni) { %>
+                        <option value="<%- optiune.valoare %>"><%- optiune.valoare %> </option>
                     <% } %>
                 </select>
             </label>
-       
+
             <p>
-            <button class="c1 c2 c3" id="filtrare">Filtreaza</button> 
-
-            <button id="resetare">Reseteaza</button><br/>
-            <button id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
-            <button id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
-
+                <button class="c1 c2 c3" id="filtrare">Filtrează</button> 
+                <button id="resetare">Resetează</button><br/>
+                
+                <button id="sortCrescPret">Sortează crescător după preț și destinație</button>
+                <button id="sortDescrescPret">Sortează descrescător după preț și destinație</button>
             </p>
-        
-            <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
 
+            <p id="p-suma">Apăsați Alt+"c" pentru suma prețurilor biletelor afișate.</p>
         </div>
+
         <section id="produse">
 
             <h2>Zboruri</h2>
                 <div>
-                    <% for( let zbor of locals.zboruri) { %>
+                        <% 
+                            const zile = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+                            const luni = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
+                        %>
+
+                        <% for( let zbor of locals.zboruri) { 
+                            let dPlecare = new Date(zbor.data_plecare);
+                            let dSosire = new Date(zbor.data_sosire);
+                        %>
                         <a class="link-fara-stilizare" href="/zbor/<%-zbor.id %>">
-                            <article class="produs-zbor">
+                            <article class="zboruri">
                                 <div class="zona-plecare">
                                     <span class="oras"><%- zbor.oras_plecare %> <i class="fa-solid fa-plane-departure"></i></span>
-                                    <span class="data"><%- new Date(zbor.data_plecare).toLocaleString('ro-RO') %></span>
+                                    
+                                    <span class="data">
+                                        <time datetime="<%= dPlecare.toISOString() %>">
+                                            <%= zile[dPlecare.getDay()] %>, <%= dPlecare.getDate() %>-<%= luni[dPlecare.getMonth()] %>-<%= dPlecare.getFullYear() %>
+                                        </time>
+                                    </span>
+
                                 </div>
 
                                 <div class="zona-centrala">
                                     <h3 class="titlu-zbor"><%- zbor.titlu_zbor %></h3>
+                                    <p class="continent">Continent: <%- zbor.continent %></p>
                                     <figure class="container-imagine">
                                         <img src="/resurse/imagini/zboruri/<%- zbor.imagine %>" alt="[imagine <%- zbor.titlu_zbor %>]" />
                                     </figure>
@@ -82,14 +102,20 @@
                                 </div>
 
                                 <div class="zona-sosire">
-                                    <span class="oras"><i class="fa-solid fa-plane-arrival"></i> <%- zbor.oras_sosire %></span>
-                                    <span class="data"><%- new Date(zbor.data_sosire).toLocaleString('ro-RO') %></span>
+                                    <span class="oras val-destinatie"><i class="fa-solid fa-plane-arrival"></i> <%- zbor.oras_sosire %></span>
+                            
+                                    <span class="data">
+                                        <time datetime="<%= dSosire.toISOString() %>">
+                                            <%= zile[dSosire.getDay()] %>, <%= dSosire.getDate() %>-<%= luni[dSosire.getMonth()] %>-<%= dSosire.getFullYear() %>
+                                        </time>
+                                    </span>                                
+
                                 </div>
 
                                 <input type="checkbox" class="select-cos" value="<%-zbor.id %>">
                             </article>
+                        </a>
                         <% }%>
-                    </a>
                 </div>
         </section>
     </main>

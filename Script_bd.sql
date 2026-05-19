@@ -1,9 +1,11 @@
 DROP TABLE IF EXISTS zboruri CASCADE;
 DROP TYPE IF EXISTS continente CASCADE;
 DROP TYPE IF EXISTS clase_zbor CASCADE;
+DROP TYPE IF EXISTS tip_escala CASCADE;
 
 CREATE TYPE continente AS ENUM('Asia', 'America', 'Europa', 'Africa', 'Australia');
 CREATE TYPE clase_zbor AS ENUM('Economy', 'Premium Economy', 'Business', 'First Class');
+CREATE TYPE tip_escala AS ENUM('Direct', '1 Escala', '2+ Escale');
 
 CREATE TABLE zboruri (
    id serial PRIMARY KEY,
@@ -28,6 +30,8 @@ CREATE TABLE zboruri (
    facilitati VARCHAR(200),                           
 
    zbor_international BOOLEAN NOT NULL DEFAULT FALSE,
+
+   tip_zbor tip_escala DEFAULT 'Direct',
 
    oras_plecare VARCHAR(100) DEFAULT 'București (OTP)',
    oras_sosire VARCHAR(100) NOT NULL
