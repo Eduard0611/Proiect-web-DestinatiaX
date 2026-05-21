@@ -10,6 +10,10 @@
   display: none;
 }
 
+#body-zboruri #infoRange {
+  font-weight: bold;
+  color: var(--culoare-text);
+}
 #body-zboruri #filtre {
   display: flex;
   align-items: center;

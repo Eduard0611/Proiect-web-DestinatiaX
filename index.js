@@ -148,7 +148,7 @@ app.get("/zboruri", function (req, res){
             return;
         }
         
-        client.query(`select distinct clasa as valoare from zboruri`, function(err, rezOptiuni){
+        client.query(`select distinct clasa as valoare, companie_aeriana from zboruri`, function(err, rezOptiuni){
             if (err){
                 console.log("Eroare extragere clase zbor", err);
                 afisareEroare(res, 2);
