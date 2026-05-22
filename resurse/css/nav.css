@@ -60,12 +60,6 @@ ul.meniu li ul {
     transform: scaleY(1);
   }
 }
-ul.meniu > li:hover {
-  background-color: var(--culoare-accent);
-  color: white;
-  box-shadow: inset 0 0 5px 3px black;
-}
-
 ul.meniu li {
   cursor: pointer;
   width: var(--latime-buton);
@@ -106,4 +100,10 @@ ul.meniu li ul li a::before {
 ul.meniu li ul li:hover a::before {
   left: 10px;
   opacity: 1;
+}
+
+ul.meniu > li:hover {
+  background-color: var(--culoare-accent);
+  color: white;
+  box-shadow: inset 0 0 5px 3px black;
 }

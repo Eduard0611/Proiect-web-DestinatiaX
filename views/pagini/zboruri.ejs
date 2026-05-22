@@ -17,7 +17,16 @@
 
     <%- include('../fragmente/header.ejs') %>
 
+
+
     <main>
+
+        <input type="checkbox" id="ch-filtre">
+        <div class="bara-titlu">
+            <h2>Zboruri</h2>
+            <label class="buton-filtre" for="ch-filtre"><i class="fa-solid fa-filter"></i>Filtrează</label>
+        </div>
+
         <div id="filtre">
             <label> Destinație: 
                 <input type="text" id="inp-destinatie" placeholder="ex: Paris, Tokyo">
@@ -83,7 +92,7 @@
 
         <section id="produse">
 
-            <h2>Zboruri</h2>
+            
                 <div> 
                         <p id="nu-sunt-zboruri" style = "color:white"></p>
                         <% 

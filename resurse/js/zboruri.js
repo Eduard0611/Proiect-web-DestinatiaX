@@ -2,16 +2,69 @@ window.onload= function(){
 
     let zboruriInit = Array.from(document.getElementsByClassName("zboruri"));
 
+
+    let idInputuriText = ["inp-destinatie", "inp-companie", "inp-descriere"];
+    for (let id of idInputuriText) {
+        let input = document.getElementById(id);
+        if (input) {
+            input.oninput = function() {
+                this.classList.remove("input-eroare");
+            };
+        }
+    }
+
     document.getElementById("inp-locuri").onchange = function(){
         let val  = this.value.trim()
         document.getElementById("infoRange").innerHTML = `(${val})`;
     }
 
+    function valideazaFiltre(){
+        let valid = true;
+        let erori = [];
+
+        let regTextStandard = /^[a-zA-Z\s\-ăâîșțĂÂÎȘȚ]*$/; 
+
+        // validare destinatie
+        let inpDestinatie = document.getElementById("inp-destinatie");
+        if (!regTextStandard.test(inpDestinatie.value.trim())) {
+            inpDestinatie.classList.add("input-eroare");
+            erori.push("- Destinația poate conține doar litere, spații și cratimă.");
+            valid = false;
+        }
+
+        // validare companie 
+        let inpCompanie = document.getElementById("inp-companie");
+        if (!regTextStandard.test(inpCompanie.value.trim())) {
+            inpCompanie.classList.add("input-eroare");
+            erori.push("- Compania poate conține doar litere, spații și cratimă.");
+            valid = false;
+        }
+
+        // validare textarea
+        let inpDescriere = document.getElementById("inp-descriere");
+        let regDescriere = /^[a-zA-Z\s\+\-ăâîșțĂÂÎȘȚ]*$/; 
+
+        if (!regDescriere.test(inpDescriere.value.trim())) {
+            inpDescriere.classList.add("input-eroare");
+            erori.push("- Descrierea conține caractere nepermise (folosiți doar litere, + și -).");
+            valid = false;
+        }
+
+        if (!valid) {
+            alert("Eroare de validare:\n" + erori.join("\n"));
+        }
+
+        return valid;
+    }
 
     document.getElementById("filtrare").onclick = function(){
+
+        if (!valideazaFiltre()) { return; }
+
+
         // Filtru dupa destinatie
         let inpDestinatie = document.getElementById("inp-destinatie").value.trim().toLowerCase();
-  
+
         // Filtru dupa escala 
         let escalaGrupRadio = document.getElementsByName("gr_rad");
         let valEscalaCautata = "toate";
@@ -142,6 +195,8 @@ window.onload= function(){
 
     function sorteaza(semn) {
 
+        if (!valideazaInputuri()) return;
+
         let zboruri = document.getElementsByClassName("zboruri")
         let vZboruri = Array.from(zboruri)
         vZboruri.sort(function(a,b){
@@ -168,6 +223,8 @@ window.onload= function(){
 
     window.onkeydown = function(e){
         if (e.key == 'c' &&  e.altKey){
+            if (!valideazaInputuri()) return;
+
             let zboruri = document.getElementsByClassName("zboruri");
             let suma = 0;
             for (let zbor of zboruri){
