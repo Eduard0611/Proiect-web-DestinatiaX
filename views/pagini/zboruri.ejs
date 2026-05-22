@@ -26,7 +26,7 @@
             <label> Companie aeriană:
                 <input list="lista-companii" id="inp-companie" placeholder="Alege compania...">
                 <datalist id="lista-companii">
-                    <% for (let optiune of locals.optiuni) { %>
+                    <% for (let optiune of locals.companii) { %>
                     <option value = "<%- optiune.companie_aeriana %>">
                     <% } %>
                 </datalist>
@@ -35,16 +35,16 @@
             <div class="grup-radio"> Tip Escală (Subcategorie):
                 <p><label><input name="gr_rad" value="Direct" type="radio"/> Direct</label></p>
                 <p><label><input name="gr_rad" value="1 Escala" type="radio"/> 1 Escală</label></p>
-                <p><label><input name="gr_rad" value="2+ Escale" type="radio"/> 2+ Escale</label></p>
+                <p><label><input name="gr_rad" value="2+ Escale" type="radio"/> Mai mult de două escale</label></p>
                 <p><label><input id="gr_rad4" name="gr_rad" value="toate" type="radio" checked/> Toate</label></p>
             </div>
 
             <label> Intervale de preț (EUR):
-                <select id="inp-pret-multiplu" multiple size="4">
-                    <option value="0-100">0 - 100 EUR</option>
-                    <option value="100-300">100 - 300 EUR</option>
-                    <option value="300-800">300 - 800 EUR</option>
-                    <option value="800-3000">800 - 3000 EUR</option>
+                <select id="inp-pret" multiple size="4">
+                    <option value="0-100">0 - 100 EURO</option>
+                    <option value="100-300">100 - 300 EURO</option>
+                    <option value="300-800">300 - 800 EURO</option>
+                    <option value="800-3000">800 - 3000 EURO</option>
                 </select>
             </label>
 
@@ -65,10 +65,10 @@
             </p>
 
             <label>Clasa de zbor:
-                <select id="inp-categorie">
+                <select id="inp-categorie-clasa">
                     <option id="sel-toate" selected value="toate">toate</option>
-                    <% for (let optiune of locals.optiuni) { %>
-                        <option value="<%- optiune.valoare %>"><%- optiune.valoare %></option>
+                    <% for (let optiune of locals.clase) { %>
+                        <option value="<%- optiune.clasa %>"><%- optiune.clasa %></option>
                     <% } %>
                 </select>
             </label>
@@ -84,7 +84,8 @@
         <section id="produse">
 
             <h2>Zboruri</h2>
-                <div>
+                <div> 
+                        <p id="nu-sunt-zboruri" style = "color:white"></p>
                         <% 
                             const zile = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
                             const luni = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];

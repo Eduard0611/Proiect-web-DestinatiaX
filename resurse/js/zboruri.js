@@ -2,15 +2,17 @@ window.onload= function(){
 
     let zboruriInit = Array.from(document.getElementsByClassName("zboruri"));
 
-    document.getElementById("inp-locuri").oninput = function(){
-        document.getElementById("infoRange").innerHTML = `(${this.value})`;
+    document.getElementById("inp-locuri").onchange = function(){
+        let val  = this.value.trim()
+        document.getElementById("infoRange").innerHTML = `(${val})`;
     }
 
 
     document.getElementById("filtrare").onclick = function(){
+        // Filtru dupa destinatie
         let inpDestinatie = document.getElementById("inp-destinatie").value.trim().toLowerCase();
   
-
+        // Filtru dupa escala 
         let escalaGrupRadio = document.getElementsByName("gr_rad");
         let valEscalaCautata = "toate";
         for (let rad of escalaGrupRadio){
@@ -20,10 +22,46 @@ window.onload= function(){
                 }
             }
 
+        // Filtru dupa companie
         let inpCompanieZbor = document.getElementById("inp-companie").value.trim().toLowerCase();
 
+        //Filru dupa numarul de locuri
+        let inpLocuriMin = parseInt(document.getElementById("inp-locuri").value.trim());
 
-        
+        //Filtru dupa clasa
+        let inpClasa = document.getElementById("inp-categorie-clasa").value.trim().toLowerCase();
+
+        // Filtru select multiplu (Pret)
+        let inpPret = document.getElementById("inp-pret");
+        let optiuniPretBifate = [];
+        for (let opt of inpPret.options) {
+            if (opt.selected) {
+                optiuniPretBifate.push(opt.value);
+            }
+        }
+
+        // Filtru textarea (Descriere)
+        let textDescriere = document.getElementById("inp-descriere").value.trim().toLowerCase();
+        let vectCuvinte = textDescriere.split(/\s+/);
+        let cuvIncluse = [];
+        let cuvExcluse = [];
+
+        for (let cuv of vectCuvinte) {
+            if (cuv.startsWith("+") && cuv.length > 1) {
+                cuvIncluse.push(cuv.substring(1)); 
+            } else if (cuv.startsWith("-") && cuv.length > 1) {
+                cuvExcluse.push(cuv.substring(1));
+            } else if (cuv.length > 0 && cuv !== "+" && cuv !== "-") {
+                // Dacă un cuvânt nu are niciun semn, îl tratăm ca pe un cuvânt INCLUS implicit
+                cuvIncluse.push(cuv);
+            }
+        }
+
+        // Filtru checkbox (zbor international)
+        let chkInternational = document.getElementById("inp-international").checked;
+
+
+        let contorZboruri = 0;
         let zboruri = document.getElementsByClassName("zboruri");
         for (let zbor of zboruri){
             zbor.style.display = "none";
@@ -31,17 +69,72 @@ window.onload= function(){
             let dest = zbor.getElementsByClassName("val-destinatie")[0].innerHTML.trim().toLowerCase();
             let cond1 = dest.includes(inpDestinatie);
 
-
             let valEscala = zbor.getElementsByClassName("val-escala")[0].innerHTML.trim().toLowerCase();
             let cond2 = (valEscalaCautata == "toate") || (valEscalaCautata == valEscala);
 
             let valCompanie = zbor.getElementsByClassName("val-companie")[0].innerHTML.trim().toLowerCase();
-            let cond3 = (inpCompanieZbor == "") || (valCompanie == inpCompanieZbor);
+            let cond3 = (inpCompanieZbor == "") || (valCompanie.includes(inpCompanieZbor));
 
+            let locuri = parseInt(zbor.getElementsByClassName("val-locuri")[0].innerHTML.trim());
+            let cond4 = (locuri >= inpLocuriMin)
 
+            let clasa = zbor.getElementsByClassName("val-clasa")[0].innerHTML.trim().toLowerCase();
+            let cond5 = (inpClasa == "toate") || (inpClasa == clasa);
 
-            if (cond1 && cond2 && cond3){
+            let pretZbor = parseFloat(zbor.getElementsByClassName("pret-zbor")[0].innerHTML.trim());
+            let cond6 = false;
+
+            if (optiuniPretBifate.length == 0){
+                cond6 = true;
+            } else {
+                for (let optiune of optiuniPretBifate){
+
+                    let [min, max] = optiune.split("-");
+                    let pretMin = parseFloat(min);
+                    let pretMax = parseFloat(max);
+
+                    if (pretZbor >= pretMin && pretZbor <= pretMax){
+                        cond6 = true;
+                        break;
+                    }
+                }
+            }
+             
+            let descriereZbor = zbor.getElementsByClassName("val-descriere")[0].innerHTML.trim().toLowerCase();
+            let cond7 = true;
+
+            for (let cuvInc of cuvIncluse){
+                if (!descriereZbor.includes(cuvInc)){
+                    cond7 = false;
+                    break;
+                }
+            }
+
+            if (cond7){
+                for (let cuvExc of cuvExcluse){
+                    if (descriereZbor.includes(cuvExc)){
+                        cond7 = false;
+                        break;
+                    }
+                }
+            }
+
+            let zborInternational = zbor.getElementsByClassName("val-international")[0].innerHTML.trim().toLowerCase();
+            let cond8 = (!chkInternational) || (zborInternational == "true");
+
+            if (cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8){
                 zbor.style.display = "grid"; 
+                contorZboruri = contorZboruri + 1;
+            }
+        }
+
+        if (contorZboruri == 0){
+            document.getElementById("nu-sunt-zboruri").innerHTML = "Nu s-a găsit niciun zbor disponibil. Ne pare rău."
+        } else {
+            if (contorZboruri == 1) {
+                document.getElementById("nu-sunt-zboruri").innerHTML = "S-a găsit un zbor care indeplinește condițiile d-voastră."
+            } else {
+                document.getElementById("nu-sunt-zboruri").innerHTML = `S-au găsit ${contorZboruri} zboruri care indeplinesc condițiile d-voastră.`
             }
         }
     }
@@ -67,7 +160,6 @@ window.onload= function(){
         for (let zbor of vZboruri){
             zbor.parentElement.parentElement.appendChild(zbor.parentElement)
         }
-
     }
 
     document.getElementById("sortCrescPret").onclick = function(){sorteaza(1)} 
@@ -117,7 +209,8 @@ window.onload= function(){
             document.getElementById("infoRange").innerHTML = "(0)";
             document.getElementById("inp-descriere").value = "";
             document.getElementById("inp-international").checked = false;
-            document.getElementById("inp-categorie").value = "toate";
+            document.getElementById("inp-categorie-clasa").value = "toate";
+            document.getElementById("inp-pret").selectedIndex = -1;
             let zboruri = document.getElementsByClassName("zboruri");
             let zboruriInit = Array.from(document.getElementsByClassName("zboruri")); 
             
