@@ -35,7 +35,8 @@
         align-items: center; 
         justify-content: flex-start; 
         gap: 1.5rem; 
-        margin: 1rem 0;
+        margin-top: 2rem;
+        margin-bottom: 3rem;
 
         h2 { 
             margin: 0; 
@@ -94,6 +95,7 @@
         &:hover {
             transform: scale(1.05);
         }
+        
 
     }
 
@@ -139,125 +141,20 @@
     .input-eroare {
         border: 2px solid red;
     }
-
-}
-
-
-#body-zbor{
-    main{
-        @extend %container-rotunjit;
-
-        background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.8)), 
-            var(--imagine-fundal); 
-
-
-        background-size: cover;
-        background-position: center;
-
-
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        text-align: center;
-
-        h2 {
-            display: block;
-            color: var(--culoare-accent);
-            font-size: 5vw;
-            letter-spacing: 1vw;
-
-            .x-mare {
-                font-size: 1.5em; 
-                color: var(--culoare-text); 
-                display: inline-block; 
-                transform: translateY(8%);
-            }
-            margin: 0 auto;
-            margin-bottom: 1rem;
-        }
-
-        p{
-            font-weight: bold;
-            font-size: larger;
-            font-style: italic;
-            color: black;
-            text-decoration: underline;
-
-            span{
-                font-weight: normal;
-                color: var(--culoare-text);;
-            }
-
-        }
-
-    }
-
-    .produs-zbor{
-
-
-        display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
-        align-items: center;
-
-        margin-bottom : 20px;
-
-        transition: transform 0.4s ;
-
-        @extend %container-rotunjit;
-
-        .zona-centrala{
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-
-        .zona-plecare, .zona-sosire {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            
-            .oras { font-weight: bold; font-size: 1.2rem; }
-            .data { color: #666; font-size: 0.9rem; }
-        } 
-
-        .zona-sosire{
-            align-items: flex-end;
-        }
-        .zona-plecare{
-            align-items: flex-start;
-        }
-
-        &:hover {
-            transform: scale(1.05);
-
-            .cumpara {
-                color: red;
-            }
-        }
-
-    }
-
-    figure{
- 
-
-        img{
-            border: 1px solid var(--culoare-contur);
-            border-radius: 10px;
-
-            width: 50%;
-            height: auto;
-            min-width: 250px;
-            max-width: 500px;
-            border-radius: 10px;
-        }
-    }
-
-
     
+    .pret-zbor {
+        // border: 1px solid var(--culoare-contur);
+        // border-radius: 5px;
+        // background-color: var(--culoare-accent);
+        // padding: 5px 10px;
+        font-weight: bold;
+        color: var(--culoare-text);
+        font-size: 1.2rem;
+    }
 }
+
+
+
 
 
     

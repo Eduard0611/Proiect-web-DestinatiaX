@@ -8,7 +8,7 @@ window.onload= function(){
         let input = document.getElementById(id);
         if (input) {
             input.oninput = function() {
-                this.classList.remove("input-eroare");
+                this.classList.remove("is-invalid");
             };
         }
     }
@@ -18,7 +18,7 @@ window.onload= function(){
         document.getElementById("infoRange").innerHTML = `(${val})`;
     }
 
-    function valideazaFiltre(){
+    function valideazaInputuri(){
         let valid = true;
         let erori = [];
 
@@ -27,7 +27,7 @@ window.onload= function(){
         // validare destinatie
         let inpDestinatie = document.getElementById("inp-destinatie");
         if (!regTextStandard.test(inpDestinatie.value.trim())) {
-            inpDestinatie.classList.add("input-eroare");
+            inpDestinatie.classList.add("is-invalid");
             erori.push("- Destinația poate conține doar litere, spații și cratimă.");
             valid = false;
         }
@@ -35,7 +35,7 @@ window.onload= function(){
         // validare companie 
         let inpCompanie = document.getElementById("inp-companie");
         if (!regTextStandard.test(inpCompanie.value.trim())) {
-            inpCompanie.classList.add("input-eroare");
+            inpCompanie.classList.add("is-invalid");
             erori.push("- Compania poate conține doar litere, spații și cratimă.");
             valid = false;
         }
@@ -45,7 +45,7 @@ window.onload= function(){
         let regDescriere = /^[a-zA-Z\s\+\-ăâîșțĂÂÎȘȚ]*$/; 
 
         if (!regDescriere.test(inpDescriere.value.trim())) {
-            inpDescriere.classList.add("input-eroare");
+            inpDescriere.classList.add("is-invalid");
             erori.push("- Descrierea conține caractere nepermise (folosiți doar litere, + și -).");
             valid = false;
         }
@@ -59,7 +59,7 @@ window.onload= function(){
 
     document.getElementById("filtrare").onclick = function(){
 
-        if (!valideazaFiltre()) { return; }
+        if (!valideazaInputuri()) { return; }
 
 
         // Filtru dupa destinatie

@@ -1,4 +1,4 @@
-#body-zbor .produs-zbor, #body-zbor main, #body-zboruri .zboruri, #body-zboruri #filtre {
+#body-zboruri .zboruri, #body-zboruri #filtre {
   border: 1px solid var(--culoare-contur);
   border-radius: 10px;
   box-shadow: 0px 0px 5px var(--culoare-contur);
@@ -26,7 +26,8 @@
   align-items: center;
   justify-content: flex-start;
   gap: 1.5rem;
-  margin: 1rem 0;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 #body-zboruri .bara-titlu h2 {
   margin: 0;
@@ -109,88 +110,8 @@
 #body-zboruri .input-eroare {
   border: 2px solid red;
 }
-
-#body-zbor main {
-  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8)), var(--imagine-fundal);
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-}
-#body-zbor main h2 {
-  display: block;
-  color: var(--culoare-accent);
-  font-size: 5vw;
-  letter-spacing: 1vw;
-}
-#body-zbor main h2 .x-mare {
-  font-size: 1.5em;
-  color: var(--culoare-text);
-  display: inline-block;
-  transform: translateY(8%);
-}
-#body-zbor main h2 {
-  margin: 0 auto;
-  margin-bottom: 1rem;
-}
-#body-zbor main p {
+#body-zboruri .pret-zbor {
   font-weight: bold;
-  font-size: larger;
-  font-style: italic;
-  color: black;
-  text-decoration: underline;
-}
-#body-zbor main p span {
-  font-weight: normal;
   color: var(--culoare-text);
-}
-#body-zbor .produs-zbor {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  align-items: center;
-  margin-bottom: 20px;
-  transition: transform 0.4s;
-}
-#body-zbor .produs-zbor .zona-centrala {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-#body-zbor .produs-zbor .zona-plecare, #body-zbor .produs-zbor .zona-sosire {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-#body-zbor .produs-zbor .zona-plecare .oras, #body-zbor .produs-zbor .zona-sosire .oras {
-  font-weight: bold;
   font-size: 1.2rem;
-}
-#body-zbor .produs-zbor .zona-plecare .data, #body-zbor .produs-zbor .zona-sosire .data {
-  color: #666;
-  font-size: 0.9rem;
-}
-#body-zbor .produs-zbor .zona-sosire {
-  align-items: flex-end;
-}
-#body-zbor .produs-zbor .zona-plecare {
-  align-items: flex-start;
-}
-#body-zbor .produs-zbor:hover {
-  transform: scale(1.05);
-}
-#body-zbor .produs-zbor:hover .cumpara {
-  color: red;
-}
-#body-zbor figure img {
-  border: 1px solid var(--culoare-contur);
-  border-radius: 10px;
-  width: 50%;
-  height: auto;
-  min-width: 250px;
-  max-width: 500px;
-  border-radius: 10px;
 }

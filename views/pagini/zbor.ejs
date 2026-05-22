@@ -17,75 +17,74 @@
             <h2>
                 Destinația<b class="x-mare">X</b>
             </h2>
-                <article id="art-produs">
-
-                    <h3><span class="nume"><%- locals.zbor.titlu_zbor %></span></h3>
-
-                    <%
-                        const zile = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
-                        const luni = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
-                        
-                        let dPlecare = new Date(zbor.data_plecare);
-                        let dSosire = new Date(zbor.data_sosire);
-                    %>
-
-
-                    <article class="produs-zbor">
-                        <div class="zona-plecare">
-                            <span class="oras"><%- zbor.oras_plecare %> <i class="fa-solid fa-plane-departure"></i></span>
-                            <span class="data">
-                                <time datetime="<%= dPlecare.toISOString() %>">
-                                    <%= zile[dPlecare.getDay()] %>, <%= dPlecare.getDate() %>-<%= luni[dPlecare.getMonth()] %>-<%= dPlecare.getFullYear() %>
-                                </time>
-                            </span>
-                        </div>
-
-                        <div class="zona-centrala">
-                            <h3 class="cumpara">Cumpără</h3>
-                            <div class="pret-zbor"><%- zbor.pret %> EUR</div>
-                        </div>
-
-                        <div class="zona-sosire">
-                            <span class="oras"><i class="fa-solid fa-plane-arrival"></i> <%- zbor.oras_sosire %></span>
-                            
-                            <span class="data">
-                                <time datetime="<%= dSosire.toISOString() %>">
-                                    <%= zile[dSosire.getDay()] %>, <%= dSosire.getDate() %>-<%= luni[dSosire.getMonth()] %>-<%= dSosire.getFullYear() %>
-                                </time>
-                            </span>
-                            
-                        </div>
-
-                        <input type="checkbox" class="select-cos" value="<%-zbor.id %>">
-                    </article>
-
-                    <!-- <p>Oraș de plecare: <span class="categorie"><%- locals.zbor.oras_plecare %> </span></p>
-                    <p>Oraș de sosire: <span class="categorie"><%- locals.zbor.oras_sosire %> </span></p>
-                    <p>Data de plecare: <span class="calorii"><%- new Date(locals.zbor.data_plecare).toLocaleString('ro-RO') %> </span></p>
-                    <p>Data de sosire: <span class="gramaj"><%- new Date(locals.zbor.data_sosire).toLocaleString('ro-RO') %> </span></p>
-                    <p>Pret: <span class="pret"><%- locals.zbor.pret %> </span></p> -->
-
-                    <p>Descriere: <span class="descriere"><%- locals.zbor.descriere %> </span></p>
-                    <p>Locuri disponibile: <span class="ingrediente"><%- locals.zbor.locuri_disponibile %> </span></p>
-                    
-                    <p>Categorie: <span class="categorie"><%- locals.zbor.clasa %> </span></p>
-                    <p>Compania responsabilă: <span class="pt_diabetici"><%- locals.zbor.companie_aeriana %> </span></p>
-                    <p>Zbor internațional: 
-                        
-                        
-                            <% if(locals.zbor.zbor_international)  {  %>  
-                                <span class="pt_diabetici"> Da, o să ai nevoie de pașaport! </span>  
-                            <% } else { %>
-                                <span class="pt_diabetici"> Nu, poți călători cu C.I. ! </span>
-                        <% } %>
-                    </p>
-
-
-                    <figure class="container-imagine">
-                                <img src="/resurse/imagini/zboruri/<%- zbor.imagine %>" alt="[imagine <%- zbor.titlu_zbor %>]" />
-                    </figure>   
-                </article>
             
+            <article id="art-produs">
+                <h3><span class="nume"><%- locals.zbor.titlu_zbor %></span></h3>
+
+                <%
+                    const zile = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+                    const luni = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
+                    
+                    let dPlecare = new Date(zbor.data_plecare);
+                    let dSosire = new Date(zbor.data_sosire);
+                %>
+
+                <article class="produs-zbor">
+                    <div class="zona-plecare">
+                        <span class="oras"><%- zbor.oras_plecare %> <i class="fa-solid fa-plane-departure"></i></span>
+                        <span class="data">
+                            <time datetime="<%= dPlecare.toISOString() %>">
+                                <%= zile[dPlecare.getDay()] %>, <%= dPlecare.getDate() %>-<%= luni[dPlecare.getMonth()] %>-<%= dPlecare.getFullYear() %>
+                            </time>
+                        </span>
+                    </div>
+
+                    <div class="zona-centrala">
+                        <h3 class="cumpara">Cumpără</h3>
+                        <div class="pret-zbor"><%- zbor.pret %> EUR</div>
+                    </div>
+
+                    <div class="zona-sosire">
+                        <span class="oras"><i class="fa-solid fa-plane-arrival"></i> <%- zbor.oras_sosire %></span>
+                        <span class="data">
+                            <time datetime="<%= dSosire.toISOString() %>">
+                                <%= zile[dSosire.getDay()] %>, <%= dSosire.getDate() %>-<%= luni[dSosire.getMonth()] %>-<%= dSosire.getFullYear() %>
+                            </time>
+                        </span>
+                    </div>
+                    <input type="checkbox" class="select-cos" value="<%-zbor.id %>" style="display:none;">
+                </article>
+
+                <div class="container-detalii">
+                    <div class="info-text">
+                        <p><strong>Categorie (Continent):</strong> <span><%- locals.zbor.continent %></span></p>
+                        <p><strong>Clasa de zbor:</strong> <span><%- locals.zbor.clasa %></span></p>
+                        <p><strong>Tip Escală:</strong> <span><%- locals.zbor.tip_zbor %></span></p>
+                        <p><strong>Compania aeriană:</strong> <span><%- locals.zbor.companie_aeriana %></span></p>
+                        <p><strong>Facilități incluse:</strong> <span><%- locals.zbor.facilitati %></span></p>
+                        <p><strong>Locuri disponibile:</strong> <span><%- locals.zbor.locuri_disponibile %></span></p>
+                        
+                        <p><strong>Zbor internațional:</strong> 
+                            <span>
+                                <% if(locals.zbor.zbor_international)  {  %>  
+                                    Da, o să ai nevoie de pașaport!  
+                                <% } else { %>
+                                    Nu, poți călători cu C.I.!
+                                <% } %>
+                            </span>
+                        </p>
+
+                        <div class="descriere">
+                            <strong>Descriere:</strong>
+                            <p><%- locals.zbor.descriere %></p>
+                        </div>
+                    </div>
+
+                    <figure class="imagine-zbor">
+                        <img src="/resurse/imagini/zboruri/<%- zbor.imagine %>" alt="[imagine <%- zbor.titlu_zbor %>]" />
+                    </figure>   
+                </div>
+            </article>
         </section>
     </main>
 

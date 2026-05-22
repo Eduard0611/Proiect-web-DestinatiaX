@@ -36,7 +36,11 @@ client= new pg.Client({
 
 
 client.connect()
-    .then(() => console.log("Conectat cu succes la baza de date!"))
+    .then(() => {
+        console.log("Conectat cu succes la baza de date!")
+        client.query(`select unnest(enum_range(null::continente)) as continent`)
+        .then(rez => app.locals.continente = rez.rows).catch(err => console.log(err))
+    })
     .catch(err => console.error("Eroare la conectare: ", err.stack));
 
 // client.query("select * from zboruri where id > 3", function(err, rez){
@@ -86,50 +90,50 @@ app.get("/despre", function (req, res){
 });
 
 
-app.get("/produse", function (req, res){
+// app.get("/produse", function (req, res){
 
-    let clauzaWhere= ""
+//     let clauzaWhere= ""
 
-    if(req.query.tip){
-        clauzaWhere=`where tip_produs='${req.query.tip}'`
-    }
+//     if(req.query.tip){
+//         clauzaWhere=`where tip_produs='${req.query.tip}'`
+//     }
 
-    client.query(`select * from prajituri ${clauzaWhere}`, function(err, rez){
+//     client.query(`select * from prajituri ${clauzaWhere}`, function(err, rez){
 
-        if (err){
-            console.log("Eroare", err)
-            afisareEroare(rez, 2)
-        }
-        else {
+//         if (err){
+//             console.log("Eroare", err)
+//             afisareEroare(rez, 2)
+//         }
+//         else {
 
-            res.render("pagini/produse", {
-                produse: rez.rows,
-                optiuni: []
-            })
-        }
-    });
-});
+//             res.render("pagini/produse", {
+//                 produse: rez.rows,
+//                 optiuni: []
+//             })
+//         }
+//     });
+// });
 
-app.get("/produs/:id", function (req, res){
+// app.get("/produs/:id", function (req, res){
 
-    client.query(`select * from prajituri where id = ${req.params.id}`, function(err, rez){
+//     client.query(`select * from prajituri where id = ${req.params.id}`, function(err, rez){
 
-        if (err){
-            console.log("Eroare", err)
-            afisareEroare(rez, 2)
-        }
-        else {
-            if(rez.rowCount == 0){
-                afisareEroare(res, 404, "Produsul nu a fost găsit!!!")
-            }
-            else{
-                res.render("pagini/produs", {
-                    prod: rez.rows[0],
-                })
-            }
-        }
-    });
-});
+//         if (err){
+//             console.log("Eroare", err)
+//             afisareEroare(rez, 2)
+//         }
+//         else {
+//             if(rez.rowCount == 0){
+//                 afisareEroare(res, 404, "Produsul nu a fost găsit!!!")
+//             }
+//             else{
+//                 res.render("pagini/produs", {
+//                     prod: rez.rows[0],
+//                 })
+//             }
+//         }
+//     });
+// });
 
 
 app.get("/zboruri", function (req, res){
@@ -161,6 +165,7 @@ app.get("/zboruri", function (req, res){
                     afisareEroare(res, 2);
                     return;
                 }
+
 
                 res.render("pagini/zboruri", {
                     zboruri: rez.rows,
