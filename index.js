@@ -166,12 +166,28 @@ app.get("/zboruri", function (req, res){
                     return;
                 }
 
+                client.query(`select min(pret) as min_pret, max(pret) as max_pret, min(locuri_disponibile) as min_locuri, max(locuri_disponibile) as max_locuri, max(length(descriere)) as max_desc_len, count(case when zbor_international = true then 1 end) as nr_zboruri_int from zboruri`, function(err, rezMinMax){
+                    if (err){
+                        console.log("Eroare extragere min/max", err);
+                        afisareEroare(res, 2);
+                        return;
+                    }
+                    client.query(`select unnest(enum_range(null::tip_escala)) as tip_escala`, function(err, rezEscala){
+                        if (err){
+                            console.log("Eroare extragere tipuri escala", err);
+                            afisareEroare(res, 2);
+                            return;
+                        }
 
-                res.render("pagini/zboruri", {
-                    zboruri: rez.rows,
-                    clase: rezClase.rows,
-                    companii: rezCompanii.rows,
-                    optiuni: []
+                        res.render("pagini/zboruri", {
+                            zboruri: rez.rows,
+                            clase: rezClase.rows,
+                            companii: rezCompanii.rows,
+                            minMax: rezMinMax.rows[0],
+                            tipuri_escala: rezEscala.rows,
+                            optiuni: []
+                        });
+                    });
                 });
             });
         });

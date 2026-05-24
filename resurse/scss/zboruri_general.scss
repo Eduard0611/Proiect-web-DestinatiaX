@@ -29,6 +29,25 @@
         justify-content: center;
         text-align: center;
 
+        .btn-group {
+            .btn {
+                color: var(--culoare-text);
+                border-color: var(--culoare-contur);
+                background-color: var(--culoare-fundal);
+                
+                &:hover {
+                    background-color: var(--culoare-contur);
+                    color: var(--culoare-text);
+                    
+                }
+            }
+            .btn-check:checked + .btn {
+                background-color: var(--culoare-accent);
+                border-color: var(--culoare-accent);
+                color: white;
+            }
+        }
+
     }
 
     .bara-titlu {
@@ -159,7 +178,6 @@
         font-size: 1.2rem;
     }
 }
-
 
 
 

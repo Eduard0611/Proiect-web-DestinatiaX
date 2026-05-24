@@ -21,6 +21,20 @@
   justify-content: center;
   text-align: center;
 }
+#body-zboruri #filtre .btn-group .btn {
+  color: var(--culoare-text);
+  border-color: var(--culoare-contur);
+  background-color: var(--culoare-fundal);
+}
+#body-zboruri #filtre .btn-group .btn:hover {
+  background-color: var(--culoare-contur);
+  color: var(--culoare-text);
+}
+#body-zboruri #filtre .btn-group .btn-check:checked + .btn {
+  background-color: var(--culoare-accent);
+  border-color: var(--culoare-accent);
+  color: white;
+}
 #body-zboruri .bara-titlu {
   display: flex;
   align-items: center;
