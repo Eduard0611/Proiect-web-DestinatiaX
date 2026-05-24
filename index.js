@@ -290,7 +290,6 @@ function initImagini(){
 initImagini();
 
 
-
 function compileazaScss(caleScss, caleCss){
     if(!caleCss){
 
@@ -335,10 +334,11 @@ for( let numeFis of vFisiere ){
 
 fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
     if (eveniment=="change" || eveniment=="rename"){
-        let caleCompleta=path.join(obGlobal.folderScss, numeFis);
+
+        }        let caleCompleta=path.join(obGlobal.folderScss, numeFis);
         if (fs.existsSync(caleCompleta)){
             compileazaScss(caleCompleta);
-        }
+        
     }
 })
 
@@ -356,7 +356,7 @@ app.get("/*pagina", function(req, res){
         return;
     }
     try{
-        
+      
         res.render("pagini"+req.url, {
             ip: req.ip,
             imagini: obGlobal.obImagini.imagini

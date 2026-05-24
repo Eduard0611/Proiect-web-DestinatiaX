@@ -28,6 +28,7 @@
         flex-direction: column;
         justify-content: center;
         text-align: center;
+
     }
 
     .bara-titlu {
@@ -40,7 +41,7 @@
 
         h2 { 
             margin: 0; 
-            color: white;
+            color: var(--culoare-text);
         }
     }
 
@@ -81,8 +82,14 @@
             flex-direction: column;
             gap: 5px;
             
-            .oras { font-weight: bold; font-size: 1.2rem; }
-            .data { color: #666; font-size: 0.9rem; }
+            .oras { 
+                font-weight: bold; 
+                font-size: 1.2rem; 
+            }
+            .data { 
+                color: var(--culoare-text); 
+                font-size: 0.9rem; 
+            }
         } 
 
         .zona-plecare{

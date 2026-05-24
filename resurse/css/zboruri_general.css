@@ -31,7 +31,7 @@
 }
 #body-zboruri .bara-titlu h2 {
   margin: 0;
-  color: white;
+  color: var(--culoare-text);
 }
 #body-zboruri .zboruri {
   display: grid;
@@ -64,7 +64,7 @@
   font-size: 1.2rem;
 }
 #body-zboruri .zboruri .zona-plecare .data, #body-zboruri .zboruri .zona-sosire .data {
-  color: #666;
+  color: var(--culoare-text);
   font-size: 0.9rem;
 }
 #body-zboruri .zboruri .zona-plecare {

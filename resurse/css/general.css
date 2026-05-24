@@ -5,14 +5,16 @@ html {
 }
 
 body {
-  --culoare-fundal: #f0f4f8;
+  --culoare-fundal: white;
   --culoare-contur: #2b5797;
   --culoare-accent: #e67e22;
   --culoare-text: #122b4f;
   --margine-pagina: 120px;
   --spatiere-grid: 20px;
   --culoare-link-hover: #d35400;
+  --culoare-fundal-secundar: #cecece;
   background-color: var(--culoare-fundal);
+  color: var(--culoare-text);
 }
 body > header > h1 {
   margin-right: 10px;
@@ -20,11 +22,12 @@ body > header > h1 {
 }
 
 body.dark-mode {
-  --culoare-fundal: #1a1a1a;
-  --culoare-contur: #e67e22;
-  --culoare-accent: #2b5797;
-  --culoare-text: #122b4f;
-  --culoare-link-hover: #2980b9;
+  --culoare-fundal: #0f172a;
+  --culoare-contur: #334155;
+  --culoare-accent: #f59e0b;
+  --culoare-text: #f8fafc;
+  --culoare-link-hover: #fbbf24;
+  --culoare-fundal-secundar: #334155;
 }
 
 #video-promo iframe, #resurse-utile object, #grid-pagina > * {
@@ -66,7 +69,7 @@ footer a {
 #grid-pagina > * {
   box-shadow: 0px 0px 5px var(--culoare-contur);
   padding: 20px;
-  background-color: white;
+  background-color: var(--culoare-fundal);
 }
 
 #welcome {
@@ -166,7 +169,7 @@ footer a {
   background-color: var(--culoare-text);
   border: 1px solid var(--culoare-text);
   box-shadow: 0px 0px 5px var(--culoare-text);
-  color: white;
+  color: var(--culoare-fundal);
   text-decoration: none;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -226,6 +229,7 @@ footer a {
   caption-side: bottom;
   margin-top: 10px;
   font-style: italic;
+  color: var(--culoare-text);
 }
 #tab-orar td, #tab-orar th {
   border: 1px solid var(--culoare-text);
@@ -315,8 +319,8 @@ main a:not(a.link-fara-stilizare)[href^=https]:hover::before, main a:not(a.link-
 
 #container-tema {
   position: fixed;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   z-index: 1000;
   background-color: var(--culoare-fundal);
   padding: 8px 15px;
@@ -330,6 +334,7 @@ main a:not(a.link-fara-stilizare)[href^=https]:hover::before, main a:not(a.link-
   margin: 0;
   float: none;
   border: 2px solid var(--culoare-contur);
+  background-color: var(--culoare-contur);
   cursor: pointer;
 }
 #container-tema .form-check-label {
@@ -340,12 +345,13 @@ main a:not(a.link-fara-stilizare)[href^=https]:hover::before, main a:not(a.link-
 }
 
 body.dark-mode #container-tema {
-  background-color: rgba(30, 30, 30, 0.9);
-  color: white;
+  background-color: var(--culoare-fundal);
+  color: var(--culoare-text);
   border-color: var(--culoare-accent);
 }
 body.dark-mode #container-tema .form-check-input {
   border-color: var(--culoare-accent);
+  background-color: var(--culoare-accent);
 }
 
 @media screen and (max-width: 1200px) {

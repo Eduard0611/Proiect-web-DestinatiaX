@@ -43,7 +43,7 @@
   align-items: center;
   margin-bottom: 30px;
   transition: transform 0.4s;
-  background-color: white;
+  background-color: var(--culoare-fundal);
 }
 #body-zbor .produs-zbor .zona-centrala {
   margin: 0 auto;
@@ -87,7 +87,7 @@
   grid-template-columns: 1fr 300px;
   gap: 30px;
   text-align: left;
-  background-color: white;
+  background-color: var(--culoare-fundal);
   padding: 25px;
   border-radius: 10px;
   box-shadow: 0 4px 6px var(--culoare-contur);
@@ -112,7 +112,7 @@
 }
 #body-zbor .container-detalii .info-text .descriere {
   margin-top: 20px;
-  background-color: var(--culoare-fundal);
+  background-color: var(--culoare-fundal-secundar);
   padding: 15px;
   border-left: 4px solid var(--culoare-accent);
   border-radius: 0 5px 5px 0;
