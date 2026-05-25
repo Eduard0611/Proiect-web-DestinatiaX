@@ -121,8 +121,31 @@
         &:hover {
             transform: scale(1.05);
         }
-        
 
+        &.produs-ieftin {
+            
+            box-shadow: 0 0 15px 3px var(--culoare-accent);
+            border: 2px solid var(--culoare-accent);
+            position: relative; 
+
+            &::after {
+                content: "Cel mai ieftin!"; 
+                position: absolute;
+                top: -15px; 
+                right: -15px;
+                
+                background-color: red; 
+                color: white;
+                font-weight: bold;
+                padding: 5px 15px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                
+                transform: rotate(5deg);
+                z-index: 5;
+            }
+        }
+        
     }
 
     #produse a{

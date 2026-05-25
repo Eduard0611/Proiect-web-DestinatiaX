@@ -2,6 +2,25 @@ window.onload= function(){
 
     let zboruriInit = Array.from(document.getElementsByClassName("zboruri"));
 
+    let minPreturi = {};
+
+    for (let zbor of zboruriInit) {
+        let categorie = zbor.getElementsByClassName("val-categorie")[0].innerHTML.trim().toLowerCase();
+        let pret = parseFloat(zbor.getElementsByClassName("pret-zbor")[0].innerHTML.trim());
+        
+        if (minPreturi[categorie] === undefined || pret < minPreturi[categorie]) {
+            minPreturi[categorie] = pret;
+        }
+    }
+
+    for (let zbor of zboruriInit) {
+        let categorie = zbor.getElementsByClassName("val-categorie")[0].innerHTML.trim().toLowerCase();
+        let pret = parseFloat(zbor.getElementsByClassName("pret-zbor")[0].innerHTML.trim());
+        
+        if (pret === minPreturi[categorie]) {
+            zbor.classList.add("produs-ieftin"); 
+        }
+    }
 
     let idInputuriText = ["inp-destinatie", "inp-companie", "inp-descriere"];
     for (let id of idInputuriText) {
