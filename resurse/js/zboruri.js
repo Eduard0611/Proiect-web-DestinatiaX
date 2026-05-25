@@ -13,10 +13,7 @@ window.onload= function(){
         }
     }
 
-    document.getElementById("inp-locuri").onchange = function(){
-        let val  = this.value.trim()
-        document.getElementById("infoRange").innerHTML = `(${val})`;
-    }
+
 
     function valideazaInputuri(){
         let valid = true;
@@ -57,7 +54,7 @@ window.onload= function(){
         return valid;
     }
 
-    document.getElementById("filtrare").onclick = function(){
+    function aplicaFiltre() {
 
         if (!valideazaInputuri()) { return; }
 
@@ -105,7 +102,6 @@ window.onload= function(){
             } else if (cuv.startsWith("-") && cuv.length > 1) {
                 cuvExcluse.push(cuv.substring(1));
             } else if (cuv.length > 0 && cuv !== "+" && cuv !== "-") {
-                // Dacă un cuvânt nu are niciun semn, îl tratăm ca pe un cuvânt INCLUS implicit
                 cuvIncluse.push(cuv);
             }
         }
@@ -190,6 +186,26 @@ window.onload= function(){
                 document.getElementById("nu-sunt-zboruri").innerHTML = `S-au găsit ${contorZboruri} zboruri care indeplinesc condițiile d-voastră.`
             }
         }
+    }
+
+    document.getElementById("filtrare").onclick = aplicaFiltre;
+
+    document.getElementById("inp-destinatie").oninput = aplicaFiltre;
+    document.getElementById("inp-companie").oninput = aplicaFiltre;
+    document.getElementById("inp-descriere").oninput = aplicaFiltre;
+    document.getElementById("inp-categorie-clasa").onchange = aplicaFiltre;
+    document.getElementById("inp-pret").onchange = aplicaFiltre;
+    document.getElementById("inp-international").onchange = aplicaFiltre;
+
+    let radioEscala = document.getElementsByName("gr_rad");
+    for (let rad of radioEscala) {
+        rad.onchange = aplicaFiltre;
+    }
+
+    document.getElementById("inp-locuri").oninput = function(){
+        let val  = this.value.trim()
+        document.getElementById("infoRange").innerHTML = `(${val})`;
+        aplicaFiltre();
     }
     
 
