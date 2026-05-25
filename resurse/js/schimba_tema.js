@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", function() {
-    const switchTema = document.getElementById("switch-tema");
-    const iconTema = document.getElementById("icon-tema");
+    let switchTema = document.getElementById("switch-tema");
+    let iconTema = document.getElementById("icon-tema");
 
     if (switchTema) {
         switchTema.addEventListener("change", function() {

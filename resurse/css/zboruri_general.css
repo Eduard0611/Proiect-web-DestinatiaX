@@ -105,18 +105,6 @@
 #body-zboruri #ch-filtre:checked ~ #filtre {
   display: flex;
 }
-#body-zboruri .buton-filtre {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: var(--culoare-accent);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 0;
-  box-shadow: inset 0 0 0px 0px transparent;
-  transition: all 0.4s ease-in-out;
-}
 #body-zboruri .buton-filtre:hover {
   background-color: var(--culoare-accent);
   box-shadow: inset 0 0 5px 3px black;
@@ -128,4 +116,17 @@
   font-weight: bold;
   color: var(--culoare-text);
   font-size: 1.2rem;
+}
+
+.buton-filtre {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--culoare-accent);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 0;
+  box-shadow: inset 0 0 0px 0px transparent;
+  transition: all 0.4s ease-in-out;
 }

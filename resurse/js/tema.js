@@ -1,17 +1,16 @@
 window.addEventListener("DOMContentLoaded", function() {
-    const temaCurenta = localStorage.getItem("tema");
-    const switchTema = document.getElementById("switch-tema");
-    const iconTema = document.getElementById("icon-tema");
+    let temaCurenta = localStorage.getItem("tema");
 
     if (temaCurenta === "dark") {
         document.body.classList.add("dark-mode"); 
         
-        if(switchTema) switchTema.checked = true;
-        if(iconTema) iconTema.innerHTML = '<i class="fa-solid fa-moon"></i>'; 
+       document.getElementById("switch-tema").checked = true;
+       document.getElementById("icon-tema").innerHTML = '<i class="fa-solid fa-moon"></i>'; 
+       
     } else {
         document.body.classList.remove("dark-mode");
         
-        if(switchTema) switchTema.checked = false; 
-        if(iconTema) iconTema.innerHTML = '<i class="fa-solid fa-sun"></i>'; 
+        document.getElementById("switch-tema").checked = false; 
+        document.getElementById("icon-tema").innerHTML = '<i class="fa-solid fa-sun"></i>'; 
     }
 });
