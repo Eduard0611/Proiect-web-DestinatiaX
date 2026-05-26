@@ -32,8 +32,6 @@ window.onload= function(){
         }
     }
 
-
-
     function valideazaInputuri(){
         let valid = true;
         let erori = [];

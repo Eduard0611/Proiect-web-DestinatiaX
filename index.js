@@ -7,6 +7,10 @@ const sharp= require("sharp");
 // const ejs= require("ejs");
 const pg= require("pg");
 
+const AccesBD= require("./module_proprii/accesbd.js");
+const {Utilizator} = require("./module_proprii/utilizator.js");
+const Drepturi = require("./module_proprii/drepturi.js");
+
 app= express();
 app.set("view engine", "ejs")
 
@@ -25,6 +29,8 @@ console.log("Cale fisier", __filename);
 
 
 // Conectarea la baza de date
+
+app.locals.continente = [];
 
 client= new pg.Client({
     database: "destinatiax_bd",
