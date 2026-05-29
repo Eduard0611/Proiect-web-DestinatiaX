@@ -1,4 +1,7 @@
 
+$raza-border: 10px;
+$culoare-text-footer: white;
+
 %container-rotunjit {
     border: 1px solid var(--culoare-contur);
     border-radius: 10px; 
@@ -145,6 +148,42 @@
                 z-index: 5;
             }
         }
+
+        .acordeon {
+            width: 100%;
+            margin: 10px 0; 
+
+            .accordion-item {
+                background-color: transparent;
+                overflow: hidden;
+            }
+
+            .accordion-header {
+                margin: 0; 
+            }
+
+            .accordion-button {
+                padding: 8px 15px; 
+                font-size: 0.9rem;
+                font-weight: 500;
+                color: var(--culoare-text);
+
+                box-shadow: none;
+
+                &:not(.collapsed) {
+                    color: var(--culoare-text);
+                    box-shadow: none;
+                }
+
+            }
+
+            .accordion-body {
+                padding: 10px 15px;
+                font-size: 0.85rem;
+                color: var(--culoare-text);
+                line-height: 1.4;
+            }
+        }
         
     }
 
@@ -193,9 +232,9 @@
     display: inline-block;
     padding: 10px 20px;
     background-color: var(--culoare-accent);
-    color: white;
+    color: $culoare-text-footer;
     border: none;
-    border-radius: 5px;
+    border-radius: $raza-border;
     cursor: pointer;
     margin-bottom: 0;
 

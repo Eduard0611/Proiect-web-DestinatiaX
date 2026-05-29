@@ -323,7 +323,7 @@ mfrac {
 
 ::cue {
     background-color: var(--culoare-text); 
-    color: white; 
+    color: $culoare-text-footer; 
 }
 
 #container-video video {
@@ -426,6 +426,67 @@ body.dark-mode #container-tema{
         background-color: var(--culoare-accent);
     }
 }
+
+#banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 25vw;
+    height: 25vw;
+    font-size: 1.5vw; 
+    margin-left: 10px;
+    
+    display: none; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1vw;
+    box-sizing: border-box;
+    z-index: 1000;
+    
+    background-color: var(--culoare-contur);
+    border-radius: 10px;
+    color: $culoare-text-footer;
+    opacity: 1;
+    transform: scale(1);
+    
+
+    transform-origin: bottom left;
+    animation: intrareBanner 5s forwards;
+
+    #mesaj-cookies {
+        margin-top: 15px;
+        display: block;
+    }
+
+    #ok_cookies {
+        margin-top: 10px;
+        padding: 5px 15px;
+        background-color: var(--culoare-accent); 
+        color: var(--culoare-text);
+        border: none;
+        border-radius: $raza-border;
+        cursor: pointer;
+        font-size: 1.2vw;
+    }
+}
+
+
+@keyframes intrareBanner {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+        background-color: transparent; 
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        background-color: var(--culoare-text); 
+    }
+}
+
+
 
 
 @media screen and (max-width: 1200px){

@@ -2,13 +2,13 @@
 
 //setCookie("a",10, 1000)
 function setCookie(nume, val, timpExpirare){//timpExpirare in milisecunde
-    d=new Date();
+    let d=new Date();
     d.setTime(d.getTime()+timpExpirare)
-    document.cookie=`${nume}=${val}; expires=${d.toUTCString()}`;
+    document.cookie=`${nume}=${val}; expires=${d.toUTCString()}; path=/`;
 }
 
 function getCookie(nume){
-    vectorParametri=document.cookie.split(";") // ["a=10","b=ceva"]
+    let vectorParametri=document.cookie.split(";") // ["a=10","b=ceva"]
     for(let param of vectorParametri){
         if (param.trim().startsWith(nume+"="))
             return param.split("=")[1]
@@ -17,18 +17,43 @@ function getCookie(nume){
 }
 
 function deleteCookie(nume){
-    console.log(`${nume}; expires=${(new Date()).toUTCString()}`)
-    document.cookie=`${nume}=0; expires=${(new Date()).toUTCString()}`;
+    document.cookie = `${nume}=0; expires=${(new Date(0)).toUTCString()}; path=/`;
 }
 
+function deleteAllCookies() {
+    let vectorParametri = document.cookie.split(";");
+    for(let param of vectorParametri) {
+        let numeCookie = param.split("=")[0].trim();
+        deleteCookie(numeCookie);
+    }
+    console.log("Toate cookie-urile au fost șterse!");
+}
 
 window.addEventListener("load", function(){
-    if (getCookie("acceptat_banner")){
-        document.getElementById("banner").style.display="none";
+    let banner = document.getElementById("banner");
+    if (banner) {
+        if (getCookie("acceptat_banner")){
+            banner.style.display="none";
+        } else {
+            banner.style.display="flex"; 
+            document.getElementById("ok_cookies").onclick=function(){
+                setCookie("acceptat_banner", "true", 5000); 
+                banner.style.display="none"
+            }
+        }
     }
 
-    this.document.getElementById("ok_cookies").onclick=function(){
-        setCookie("acceptat_banner",true,60000);
-        document.getElementById("banner").style.display="none"
+    let paginaCurenta = window.location.pathname;
+    let ultimaPagina = getCookie("ultima_pagina");
+    let paragrafInfo = document.getElementById("info_ultima_pagina");
+    
+    if (paragrafInfo) {
+        if (ultimaPagina) {
+            paragrafInfo.innerHTML = "Ultima pagină vizitată: " + ultimaPagina;
+        } else {
+            paragrafInfo.innerHTML = "Aceasta este prima vizită pe site (sau au fost șterse cookies).";
+        }
     }
+    
+    setCookie("ultima_pagina", paginaCurenta, 24*60*60*1000); 
 })

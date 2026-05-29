@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <meta name="description" content="DestinatiaX - înregistrare utilizatori.">
+        <meta name="keywords" content="bilete de avion, destinatia visurilor, vacanta ieftina, zboruri confortabile, DestinatiaX">
+        <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
+        <title>DestinatiaX - înregistrare </title>
+        <%- include("../fragmente/head") %>     
+        <script type="text/javascript" src=/resurse/js/inregistrare.js></script>
+
+
+
+        <title>DestinatiaX - Bilete de avion ieftine</title>
+    
+    
+    </head>
+    <body id="body-inregistrare">
+    <%- include("../fragmente/header") %>
+
+    <main>
+        <div class="afisaj">
+            <h1>Înregistrare utilizator</h1>
+            <% if(!locals.raspuns) { %>    
+
+                <%-include("../fragmente/formular", {action: "/inregistrare"}) %>
+            <% } %>
+            
+        <% if(locals.raspuns) { %>
+        <%- locals.raspuns+"<br/>"%>
+        <% } %>
+        <% if(locals.err) { %>
+        <%- locals.err %>
+        <% } %>
+        </div>
+    </main>
+
+    <footer>
+        <%- include("../fragmente/footer") %>
+    </footer>
+
+    </body>
+</html>

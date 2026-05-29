@@ -246,7 +246,7 @@ window.onload= function(){
         })
         
         for (let zbor of vZboruri){
-            zbor.parentElement.parentElement.appendChild(zbor.parentElement)
+            zbor.parentElement.appendChild(zbor);
         }
     }
 
@@ -306,8 +306,41 @@ window.onload= function(){
             
             for (let zbor of zboruriInit){
                 zbor.style.display = "grid";
-                zbor.parentElement.parentElement.appendChild(zbor.parentElement);
+                zbor.parentElement.appendChild(zbor);
             }
         }
     }
+
+
+    let stocareAcordeoane = JSON.parse(localStorage.getItem("stareAcordeoane")) || {};
+    
+    for (let idAcordeon in stocareAcordeoane) {
+        if (stocareAcordeoane[idAcordeon] == true) {
+            let containerAcordeon = document.getElementById(idAcordeon);
+            if (containerAcordeon) {
+                let buton = containerAcordeon.querySelector('.accordion-button');
+                let continut = containerAcordeon.querySelector('.accordion-collapse');
+                
+                if (buton && continut) {
+                    buton.classList.remove('collapsed');
+                    buton.setAttribute('aria-expanded', 'true');
+                    continut.classList.add('show');
+                }
+            }
+        }
+    }
+
+    document.querySelectorAll('.accordion-collapse').forEach(collapseEl => {
+        collapseEl.addEventListener('shown.bs.collapse', function () {
+            let id = this.closest('.accordion').id;
+            stocareAcordeoane[id] = true;
+            localStorage.setItem("stareAcordeoane", JSON.stringify(stocareAcordeoane));
+        });
+        
+        collapseEl.addEventListener('hidden.bs.collapse', function () {
+            let id = this.closest('.accordion').id;
+            stocareAcordeoane[id] = false;
+            localStorage.setItem("stareAcordeoane", JSON.stringify(stocareAcordeoane));
+        });
+    });
 }

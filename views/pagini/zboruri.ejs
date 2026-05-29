@@ -148,9 +148,7 @@
                             let dPlecare = new Date(zbor.data_plecare);
                             let dSosire = new Date(zbor.data_sosire);
                         %>
-                        <a class="link-fara-stilizare" href="/zbor/<%-zbor.id %>">
-
-                            <article class="zboruri <%- zbor.continent %>" id="articol_<%- zbor.id %>">
+                        <article class="zboruri <%- zbor.continent %>" id="articol_<%- zbor.id %>">
 
                                     <span class="val-descriere" style="display:none;"><%- zbor.descriere %></span>
                                     <p style="display:none;">Escală: <span class="val-escala"><%- zbor.tip_zbor %></span></p>
@@ -165,14 +163,18 @@
 
                                     <div class="zona-centrala">
                                         
-                                        <h3 class="titlu-zbor"><%- zbor.titlu_zbor %></h3>
+                                        <h3 class="titlu-zbor">
+                                            <a class="link-fara-stilizare" href="/zbor/<%-zbor.id %>" style="color: inherit; text-decoration: none;"><%- zbor.titlu_zbor %></a>
+                                        </h3>
                                         
                                         <p class="categorie-zbor" style="display:none;" >Continent: <span class="val-categorie"><%- zbor.continent %></span></p>
                                         
                                         <div class="bloc-descriere-imagine">
                                             <p class="text-descriere" style="display:none;"><%- zbor.descriere %></p>
                                             <figure class="container-imagine">
-                                                <img src="/resurse/imagini/zboruri/<%- zbor.imagine %>" alt="[imagine <%- zbor.titlu_zbor %>]" />
+                                                <a href="/zbor/<%-zbor.id %>">
+                                                    <img src="/resurse/imagini/zboruri/<%- zbor.imagine %>" alt="[imagine <%- zbor.titlu_zbor %>]" />
+                                                </a>
                                             </figure>
                                         </div>
 
@@ -190,6 +192,23 @@
                                             </ul>
                                         </div>
 
+                                            <div class="accordion acordeon" id="acordeon_<%- zbor.id %>">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="heading_<%- zbor.id %>">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_<%- zbor.id %>" aria-expanded="false" aria-controls="collapse_<%- zbor.id %>">
+                                                            <i class="fa-solid fa-circle-info me-2"></i> Detalii și Descriere
+                                                        </button>
+                                                    </h2>
+                                                    
+                                                    <div id="collapse_<%- zbor.id %>" class="accordion-collapse collapse" aria-labelledby="heading_<%- zbor.id %>">
+                                                        <div class="accordion-body text-start">
+                                                            <strong>Descriere:</strong> <%- zbor.descriere %> <br>
+                                                            <strong>Facilități:</strong> <%- zbor.facilitati %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         <div class="pret-zbor"><%- zbor.pret %> EUR</div>
                                     </div>
 
@@ -203,8 +222,7 @@
                                     </div>
 
                                 <input type="checkbox" class="select-cos" value="<%-zbor.id %>">
-                            </article>
-                        </a>
+                        </article>
                     <% } %>
                 </div>
         </section>

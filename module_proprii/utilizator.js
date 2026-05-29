@@ -23,11 +23,12 @@ class Utilizator{
             if(this.checkUsername(username))
                 this.username = username;
             else throw new Error("Username incorect");
+            // Aici facem restul de verificari pentru celelalte campuri daca e nevoie
 
         }
         catch(e){ this.#eroare=e.message}
 
-        for(let prop in arguments[0]){
+        for(let prop in arguments[0]){ 
             this[prop]=arguments[0][prop]
         }
 
@@ -92,7 +93,7 @@ class Utilizator{
     }
 //xjxwhotvuuturmqm
 
-
+    // Aici trebuie sa punem un mail al nostru
     async trimiteMail(subiect, mesajText, mesajHtml, atasamente=[]){
         var transp= nodemailer.createTransport({
             service: "gmail",
@@ -139,7 +140,7 @@ class Utilizator{
         }
         
     }
-    static getUtilizDupaUsername (username,obparam, proceseazaUtiliz){
+    static getUtilizDupaUsername (username, obparam, proceseazaUtiliz){
         if (!username) return null;
         let eroare=null;
         AccesBD.getInstanta(Utilizator.tipConexiune).select(

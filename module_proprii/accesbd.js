@@ -21,9 +21,9 @@ class AccesBD{
     }
 
     initLocal(){
-        this.client= new Client({database:"cti_2026",
-            user:"irina", 
-            password:"irina", 
+        this.client= new Client({database:"destinatiax_bd",
+            user:"admin_destinatiax", 
+            password:"parola", 
             host:"localhost", 
             port:5432}
         );//atentie e posibil sa aveti nevoie sa schimbati portul in 5432
