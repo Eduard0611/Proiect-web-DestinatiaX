@@ -8,6 +8,8 @@
 
 .select-cos {
   display: none;
+  position: relative;
+  z-index: 10;
 }
 
 #body-zboruri #infoRange {
@@ -48,6 +50,7 @@
   color: var(--culoare-text);
 }
 #body-zboruri .zboruri {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
@@ -60,6 +63,20 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+}
+#body-zboruri .zboruri .zona-centrala a {
+  width: 100%;
+  height: 100%;
+  color: inherit;
+}
+#body-zboruri .zboruri .zona-centrala .titlu-zbor a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
 }
 #body-zboruri .zboruri figure img {
   width: 30%;
@@ -112,6 +129,8 @@
 #body-zboruri .zboruri .acordeon {
   width: 100%;
   margin: 10px 0;
+  position: relative;
+  z-index: 10;
 }
 #body-zboruri .zboruri .acordeon .accordion-item {
   background-color: transparent;

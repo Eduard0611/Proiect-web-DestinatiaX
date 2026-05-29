@@ -13,6 +13,8 @@ $culoare-text-footer: white;
 
 .select-cos{
     display: none;
+    position: relative;
+    z-index: 10;
 }
 
 #body-zboruri{
@@ -69,6 +71,7 @@ $culoare-text-footer: white;
 
     .zboruri{
 
+        position: relative;
         display: grid;
         grid-template-columns: 1fr 2fr 1fr; 
         align-items: center;
@@ -87,6 +90,22 @@ $culoare-text-footer: white;
             flex-direction: column;
             align-items: center;
             text-align: center;
+
+            a{
+                width: 100%;
+                height: 100%;
+                color: inherit; 
+
+            }
+            .titlu-zbor a::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 1; 
+            }
         }
         figure{
 
@@ -152,10 +171,14 @@ $culoare-text-footer: white;
         .acordeon {
             width: 100%;
             margin: 10px 0; 
+            position: relative;
+            z-index: 10;
+
 
             .accordion-item {
                 background-color: transparent;
                 overflow: hidden;
+                       
             }
 
             .accordion-header {
