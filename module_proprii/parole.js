@@ -8,6 +8,11 @@ for(let interval of v_intervale){
 
 console.log(sirAlphaNum);
 
+/**
+ * Genereaza un sir de caractere aleator (token) din litere si cifre.
+ * @param {number} n - Numarul de caractere pe care sa il aiba token-ul.
+ * @returns {string} Token-ul generat.
+ */
 function genereazaToken(n){
     let token=""
     for (let i=0;i<n; i++){

@@ -5,7 +5,9 @@ const {RolFactory}=require('./roluri.js');
 const crypto=require("crypto");
 const nodemailer=require("nodemailer");
 
-
+/**
+ * Clasa reprezentand un utilizator al aplicatiei.
+ */
 class Utilizator{
     static tipConexiune="local";
     static tabel="utilizatori"
@@ -39,10 +41,19 @@ class Utilizator{
         this.#eroare="";
     }
 
+    /**
+     * Verifica daca numele contine doar litere si incepe cu majuscula.
+     * @param {string} nume - Numele de verificat.
+     * @returns {boolean} True daca este valid, altfel false.
+     */
     checkName(nume){
         return nume!="" && nume.match(new RegExp("^[A-Z][a-z]+$")) ;
     }
 
+    /**
+     * Seteaza numele utilizatorului, verificand daca este valid.
+     * @param {string} nume - Numele de setat.
+     */
     set setareNume(nume){
         if (this.checkName(nume)) this.nume=nume
         else{
@@ -60,14 +71,27 @@ class Utilizator{
         }
     }
 
+    /**
+     * Verifica daca username-ul este valid (doar caractere alfanumerice si cateva simboluri permise).
+     * @param {string} username - Username-ul de verificat.
+     * @returns {boolean} True daca este valid, altfel false.
+     */
     checkUsername(username){
         return username!="" && username.match(new RegExp("^[A-Za-z0-9#_./]+$")) ;
     }
 
+    /**
+     * Cripteaza parola folosind algoritmul scrypt.
+     * @param {string} parola - Parola in format clar.
+     * @returns {string} Parola criptata (hex).
+     */
     static criptareParola(parola){
         return crypto.scryptSync(parola,Utilizator.parolaCriptare,Utilizator.lungimeCod).toString("hex");
     }
 
+    /**
+     * Insereaza utilizatorul curent in baza de date si ii trimite mailul de confirmare a inregistrarii.
+     */
     salvareUtilizator(){
         let parolaCriptata=Utilizator.criptareParola(this.parola);
         let utiliz=this;
@@ -94,6 +118,13 @@ class Utilizator{
 //xjxwhotvuuturmqm
 
     // Aici trebuie sa punem un mail al nostru
+    /**
+     * Trimite un email catre adresa utilizatorului curent.
+     * @param {string} subiect - Subiectul email-ului.
+     * @param {string} mesajText - Corpul email-ului formatat ca text simplu.
+     * @param {string} mesajHtml - Corpul email-ului formatat ca HTML.
+     * @param {Array} [atasamente=[]] - Lista optionala de fisiere atasate.
+     */
     async trimiteMail(subiect, mesajText, mesajHtml, atasamente=[]){
         var transp= nodemailer.createTransport({
             service: "gmail",
@@ -117,7 +148,12 @@ class Utilizator{
         })
         console.log("trimis mail");
     }
-   
+
+    /**
+     * Cauta in mod asincron un utilizator in baza de date folosind username-ul.
+     * @param {string} username - Username-ul cautat.
+     * @returns {Promise<Utilizator|null>} O instanta Utilizator daca este gasit, altfel null.
+     */
     static async getUtilizDupaUsernameAsync(username){
         if (!username) return null;
         try{
@@ -140,6 +176,13 @@ class Utilizator{
         }
         
     }
+
+    /**
+     * Cauta un utilizator in baza de date si apeleaza o functie callback cu rezultatul.
+     * @param {string} username - Username-ul cautat.
+     * @param {Object} obparam - Parametri aditionali trimisi mai departe catre callback.
+     * @param {Function} proceseazaUtiliz - Functia callback care va procesa utilizatorul gasit.
+     */
     static getUtilizDupaUsername (username, obparam, proceseazaUtiliz){
         if (!username) return null;
         let eroare=null;
@@ -162,8 +205,14 @@ class Utilizator{
         });
     }
 
+    /**
+     * Verifica daca utilizatorul curent are un anumit drept pe baza rolului sau.
+     * @param {Symbol} drept - Dreptul care se verifica.
+     * @returns {boolean} True daca are permisiunea, altfel false.
+     */
     areDreptul(drept){
         return this.rol.areDreptul(drept);
     }
 }
+
 module.exports={Utilizator:Utilizator}

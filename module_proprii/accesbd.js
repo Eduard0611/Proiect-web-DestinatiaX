@@ -19,7 +19,9 @@ class AccesBD{
             throw new Error("Trebuie apelat doar din getInstanta; fara sa fi aruncat vreo eroare");
         }
     }
-
+    /**
+     * Configureaza conexiunea la baza de date locala folosind pg.Client.
+     */
     initLocal(){
         this.client= new Client({database:"destinatiax_bd",
             user:"admin_destinatiax", 
@@ -40,6 +42,10 @@ class AccesBD{
         
     }
 
+    /**
+     * Returneaza obiectul client folosit pentru interactiunea cu baza de date.
+     * @returns {Client} Instanta de client Postgres.
+     */
     getClient(){
         if(!AccesBD.#instanta ){
             throw new Error("Nu a fost instantiata clasa");
@@ -124,7 +130,11 @@ class AccesBD{
     }
 
 
-    
+    /**
+     * Executa asincron un query de SELECT in baza de date.
+     * @param {Object} obj - Un obiect cu datele (tabel, campuri, conditiiAnd).
+     * @returns {Promise<Object|null>} Rezultatul query-ului sau null daca intervine o eroare.
+     */
     async selectAsync({tabel="",campuri=[],conditiiAnd=[]} = {}){
         let conditieWhere="";
         if(conditiiAnd.length>0)
@@ -142,6 +152,11 @@ class AccesBD{
             return null;
         }
     }
+    /**
+     * Executa un query de INSERT pentru a adauga o noua inregistrare in tabel.
+     * @param {Object} obj - Obiect continand numele tabelului si perechile coloana-valoare.
+     * @param {QueryCallBack} callback - Functie apelata la terminarea comenzii.
+     */
     insert({tabel="",campuri={}} = {}, callback){
         /*
         Exemplu:
@@ -179,6 +194,12 @@ class AccesBD{
     //     this.client.query(comanda,callback)
     // }
 
+
+    /**
+     * Executa un query de UPDATE standard.
+     * @param {Object} obj - Obiect continand tabel, campuri de actualizat si conditii de filtrare.
+     * @param {QueryCallBack} callback - Functie apelata la terminarea comenzii.
+     */
     update({tabel="",campuri={}, conditiiAnd=[]} = {}, callback, parametriQuery){
         let campuriActualizate=[];
         for(let prop in campuri)
@@ -191,6 +212,11 @@ class AccesBD{
         this.client.query(comanda,callback)
     }
 
+    /**
+     * Executa un query de UPDATE parametrizat (pentru protectie SQL Injection).
+     * @param {Object} obj - Obiect continand tabel, array de campuri, array de valori si conditii.
+     * @param {QueryCallBack} callback - Functie apelata la terminarea comenzii.
+     */
     updateParametrizat({tabel="",campuri=[],valori=[], conditiiAnd=[]} = {}, callback, parametriQuery){
         if(campuri.length!=valori.length)
             throw new Error("Numarul de campuri difera de nr de valori")
@@ -218,6 +244,11 @@ class AccesBD{
     //     this.client.query(comanda,valori, callback)
     // }
 
+    /**
+     * Executa un query de DELETE pentru a sterge inregistrari din baza de date.
+     * @param {Object} obj - Obiect continand tabel si conditiile de stergere.
+     * @param {QueryCallBack} callback - Functie apelata la terminarea comenzii.
+     */
     delete({tabel="",conditiiAnd=[]} = {}, callback){
         let conditieWhere="";
         if(conditiiAnd.length>0)
@@ -228,6 +259,11 @@ class AccesBD{
         this.client.query(comanda,callback)
     }
 
+    /**
+     * Metoda generica pentru executia directa a oricarui query SQL.
+     * @param {string} comanda - Sintaxa SQL de executat.
+     * @param {QueryCallBack} callback - Functie apelata la terminarea comenzii.
+     */
     query(comanda, callback){
         this.client.query(comanda,callback);
     }
