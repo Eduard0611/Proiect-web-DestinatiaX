@@ -73,12 +73,13 @@ class RolFactory{
             case RolAdmin.tip : return new RolAdmin();
             case RolModerator.tip : return new RolModerator();
             case RolClient.tip : return new RolClient();
+            default: return new Rol();
         }
     }
 }
 
 
 module.exports={
-    RolFactory:RolFactory,
-    RolAdmin:RolAdmin
+    Rol: Rol,
+    RolFactory: RolFactory
 }

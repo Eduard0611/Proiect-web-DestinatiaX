@@ -30,27 +30,15 @@ console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
 
+// Conectare la baza de date folosind clasa AccesBD
+let bd = AccesBD.getInstanta({init: "local"});
 
-// Conectarea la baza de date
-
-app.locals.continente = [];
-
-client= new pg.Client({
-    database: "destinatiax_bd",
-    user: "admin_destinatiax",
-    password: "parola",
-    host: "localhost",
-    port: 5432,
+bd.selectEnum("continente", "continent", function(err, rez) {
+    if(!err) app.locals.continente = rez.rows;
 });
 
+console.log("Conectat cu succes la baza de date folosind clasa AccesBD!");
 
-client.connect()
-    .then(() => {
-        console.log("Conectat cu succes la baza de date!")
-        client.query(`select unnest(enum_range(null::continente)) as continent`)
-        .then(rez => app.locals.continente = rez.rows).catch(err => console.log(err))
-    })
-    .catch(err => console.error("Eroare la conectare: ", err.stack));
 
 app.use(session({ // aici se creeaza proprietatea session a requestului (pot folosi req.session)
     secret: 'abcdefg',//folosit de express session pentru criptarea id-ului de sesiune
@@ -153,41 +141,44 @@ app.get("/despre", function (req, res){
 
 app.get("/zboruri", function (req, res){
 
-    let clauzaWhere= ""
-
+    let conditiiAnd = [];
     if(req.query.tip){
-        clauzaWhere=`where continent='${req.query.tip}'`
+        conditiiAnd.push(`continent='${req.query.tip}'`);
     }
 
-    client.query(`select * from zboruri ${clauzaWhere}`, function(err, rez){
+    AccesBD.getInstanta().select({tabel: "zboruri", campuri: ["*"], conditiiAnd: conditiiAnd}, function(err, rez){
 
         if (err){
-            console.log("Eroare extragere zboruri", err)
-            afisareEroare(res, 2)
+            console.log("Eroare extragere zboruri", err);
+            afisareEroare(res, 2);
             return;
         }
-        
-        client.query(`select distinct companie_aeriana from zboruri`, function(err, rezCompanii){
+
+        AccesBD.getInstanta().select({
+            tabel: "zboruri", 
+            campuri: ["distinct companie_aeriana"]
+        }, function(err, rezCompanii){ 
             if (err){
                 console.log("Eroare extragere companii zbor", err);
                 afisareEroare(res, 2);
                 return;
             }
-
-            client.query(`select unnest(enum_range(null::clase_zbor)) as clasa`, function(err, rezClase){
+        
+            AccesBD.getInstanta().selectEnum("clase_zbor", "clasa", function(err, rezClase){
                 if (err){
                     console.log("Eroare extragere clase zbor", err);
                     afisareEroare(res, 2);
                     return;
                 }
 
-                client.query(`select min(pret) as min_pret, max(pret) as max_pret, min(locuri_disponibile) as min_locuri, max(locuri_disponibile) as max_locuri, max(length(descriere)) as max_desc_len, count(case when zbor_international = true then 1 end) as nr_zboruri_int from zboruri`, function(err, rezMinMax){
+                AccesBD.getInstanta().query(`select min(pret) as min_pret, max(pret) as max_pret, min(locuri_disponibile) as min_locuri, max(locuri_disponibile) as max_locuri, max(length(descriere)) as max_desc_len, count(case when zbor_international = true then 1 end) as nr_zboruri_int from zboruri`, function(err, rezMinMax){
                     if (err){
                         console.log("Eroare extragere min/max", err);
                         afisareEroare(res, 2);
                         return;
                     }
-                    client.query(`select unnest(enum_range(null::tip_escala)) as tip_escala`, function(err, rezEscala){
+                    
+                    AccesBD.getInstanta().selectEnum("tip_escala", "tip_escala", function(err, rezEscala){
                         if (err){
                             console.log("Eroare extragere tipuri escala", err);
                             afisareEroare(res, 2);
@@ -211,20 +202,23 @@ app.get("/zboruri", function (req, res){
 
 app.get("/zbor/:id", function (req, res){
 
-    client.query(`select * from zboruri where id = ${req.params.id}`, function(err, rez){
+    // Construim conditia cu ID-ul cerut
+    let conditiiAnd = [`id = ${req.params.id}`];
+
+    AccesBD.getInstanta().select({tabel: "zboruri", campuri: ["*"], conditiiAnd: conditiiAnd}, function(err, rez){
 
         if (err){
-            console.log("Eroare", err)
-            afisareEroare(rez, 2)
+            console.log("Eroare", err);
+            afisareEroare(res, 2);
         }
         else {
             if(rez.rowCount == 0){
-                afisareEroare(res, 404, "Zborul nu a fost găsit!!!")
+                afisareEroare(res, 404, "Zborul nu a fost găsit!!!");
             }
             else{
                 res.render("pagini/zbor", {
                     zbor: rez.rows[0],
-                })
+                });
             }
         }
     });
@@ -375,7 +369,7 @@ fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
 
 
 // ------------------------- Utilizatori ----------------------
-// Etapa 7
+// Etapa 8
 app.post("/inregistrare",function(req, res){
     var username, poza;
     var formular= new formidable.IncomingForm()

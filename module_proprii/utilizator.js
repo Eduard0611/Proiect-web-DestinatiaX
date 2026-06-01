@@ -18,27 +18,36 @@ class Utilizator{
     #eroare;
 
     constructor({id, username, nume, prenume, email, parola, rol, culoare_chat="black", poza}={}) {
-        this.id=id;
+        this.id = id;
 
-        //optional sa facem asta in constructor
-        try{
-            if(this.checkUsername(username))
-                this.username = username;
+        try {
+            if(username === undefined || this.checkUsername(username)) this.username = username;
             else throw new Error("Username incorect");
-            // Aici facem restul de verificari pentru celelalte campuri daca e nevoie
 
+            if(nume === undefined || this.checkName(nume)) this.nume = nume;
+            else throw new Error("Nume incorect (trebuie sa contina doar litere si sa inceapa cu litera mare)");
+
+            if(prenume === undefined || this.checkName(prenume)) this.prenume = prenume;
+            else throw new Error("Prenume incorect (trebuie sa contina doar litere si sa inceapa cu litera mare)");
+
+            if(email === undefined || this.checkEmail(email)) this.email = email;
+            else throw new Error("Format email incorect");
+
+        } catch(e) { 
+            this.#eroare = e.message; 
         }
-        catch(e){ this.#eroare=e.message}
 
         for(let prop in arguments[0]){ 
-            this[prop]=arguments[0][prop]
+            if(prop !== "username" && prop !== "nume" && prop !== "prenume" && prop !== "email") {
+                this[prop] = arguments[0][prop];
+            }
         }
 
-        if(this.rol)
-            this.rol=this.rol.cod? RolFactory.creeazaRol(this.rol.cod):  RolFactory.creeazaRol(this.rol);
-        console.log(this.rol);
+        if(this.rol) {
+            this.rol = this.rol.cod ? RolFactory.creeazaRol(this.rol.cod) : RolFactory.creeazaRol(this.rol);
+        }
 
-        this.#eroare="";
+        if (!this.#eroare) this.#eroare = "";
     }
 
     /**
@@ -61,9 +70,9 @@ class Utilizator{
         }
     }
 
-    /*
-    * folosit doar la inregistrare si modificare profil
-    */
+    /**
+     * Folosit doar la inregistrare si modificare profil
+     */
     set setareUsername(username){
         if (this.checkUsername(username)) this.username=username
         else{
@@ -72,12 +81,117 @@ class Utilizator{
     }
 
     /**
-     * Verifica daca username-ul este valid (doar caractere alfanumerice si cateva simboluri permise).
+     * Verifica daca username-ul este valid
      * @param {string} username - Username-ul de verificat.
      * @returns {boolean} True daca este valid, altfel false.
      */
     checkUsername(username){
         return username!="" && username.match(new RegExp("^[A-Za-z0-9#_./]+$")) ;
+    }
+
+    checkEmail(email) {
+        let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return email && email.match(regex);
+    }
+
+    /**
+     * O metoda care primeste un obiect cu noile date ale utilizatorului si modifica inregistrarea din tabel.
+     * Arunca o eroare daca utilizatorul nu exista.
+     */
+    async modifica(obiectNou) {
+        let rezultat = await AccesBD.getInstanta(Utilizator.tipConexiune).selectAsync({
+            tabel: Utilizator.tabel,
+            campuri: ["id"],
+            conditiiAnd: [`id=${this.id}`]
+        });
+
+        if (!rezultat || rezultat.rowCount === 0) {
+            throw new Error("Eroare la modificare: Utilizatorul nu exista in baza de date!");
+        }
+
+        AccesBD.getInstanta(Utilizator.tipConexiune).update({
+            tabel: Utilizator.tabel,
+            campuri: obiectNou,
+            conditiiAnd: [`id=${this.id}`]
+        }, function(err, rez) {
+            if (err) console.error("Eroare la update utilizator:", err);
+        });
+    }
+
+    /**
+     * Sterge din tabel utilizatorul curent si arunca o eroare daca acesta nu exista.
+     */
+    async sterge() {
+        let rezultat = await AccesBD.getInstanta(Utilizator.tipConexiune).selectAsync({
+            tabel: Utilizator.tabel,
+            campuri: ["id"],
+            conditiiAnd: [`id=${this.id}`]
+        });
+
+        if (!rezultat || rezultat.rowCount === 0) {
+            throw new Error("Eroare la stergere: Utilizatorul nu exista in baza de date!");
+        }
+
+        AccesBD.getInstanta(Utilizator.tipConexiune).delete({
+            tabel: Utilizator.tabel,
+            conditiiAnd: [`id=${this.id}`]
+        }, function(err, rez) {
+            if (err) console.error("Eroare la delete utilizator:", err);
+        });
+    }
+
+    /**
+     * Metoda statica sincrona care cauta utilizatori pe baza unui obiect de parametri.
+     * Returneaza prin callback un vector de obiecte de tip Utilizator.
+     */
+    static cauta(obParam, callback) {
+        let conditii = [];
+        for (let prop in obParam) {
+            if (obParam[prop] !== undefined) {
+                conditii.push(`${prop}='${obParam[prop]}'`);
+            }
+        }
+
+        AccesBD.getInstanta(Utilizator.tipConexiune).select({
+            tabel: Utilizator.tabel,
+            campuri: ['*'],
+            conditiiAnd: conditii
+        }, function(err, rez) {
+            if (err) {
+                callback(err, []);
+            } else {
+                let listaUtilizatori = rez.rows.map(rand => new Utilizator(rand));
+                callback(null, listaUtilizatori);
+            }
+        });
+    }
+
+    /**
+     * Metoda statica asincrona care cauta utilizatori pe baza unui obiect de parametri.
+     */
+    static async cautaAsync(obParam) {
+        let conditii = [];
+        for (let prop in obParam) {
+            if (obParam[prop] !== undefined) {
+                conditii.push(`${prop}='${obParam[prop]}'`);
+            }
+        }
+
+        try {
+            let rez = await AccesBD.getInstanta(Utilizator.tipConexiune).selectAsync({
+                tabel: Utilizator.tabel,
+                campuri: ['*'],
+                conditiiAnd: conditii
+            });
+
+            if (rez && rez.rows) {
+                return rez.rows.map(rand => new Utilizator(rand));
+            }
+            return [];
+        } catch(e) {
+            console.error("Eroare cautaAsync:", e);
+            return [];
+        }
     }
 
     /**
@@ -115,9 +229,7 @@ class Utilizator{
             )
         });
     }
-//xjxwhotvuuturmqm
 
-    // Aici trebuie sa punem un mail al nostru
     /**
      * Trimite un email catre adresa utilizatorului curent.
      * @param {string} subiect - Subiectul email-ului.
@@ -129,7 +241,7 @@ class Utilizator{
         var transp= nodemailer.createTransport({
             service: "gmail",
             secure: false,
-            auth:{//date login 
+            auth:{ 
                 user:Utilizator.emailServer,
                 pass:"rwgmgkldxnarxrgu"
             },
@@ -137,13 +249,13 @@ class Utilizator{
                 rejectUnauthorized:false
             }
         });
-        //genereaza html
+        
         await transp.sendMail({
             from:Utilizator.emailServer,
-            to:this.email, //TO DO
-            subject:subiect,//"Te-ai inregistrat cu succes",
-            text:mesajText, //"Username-ul tau este "+username
-            html: mesajHtml,// `<h1>Salut!</h1><p style='color:blue'>Username-ul tau este ${username}.</p> <p><a href='http://${numeDomeniu}/cod/${username}/${token}'>Click aici pentru confirmare</a></p>`,
+            to:this.email,
+            subject:subiect,
+            text:mesajText,
+            html: mesajHtml,
             attachments: atasamente
         })
         console.log("trimis mail");
@@ -193,13 +305,12 @@ class Utilizator{
         , function (err, rezSelect){
             if(err){
                 console.error("Utilizator:", err);
-                //throw new Error()
                 eroare=-2;
             }
             else if(rezSelect.rowCount==0){
                 eroare=-1;
             }
-            //constructor({id, username, nume, prenume, email, rol, culoare_chat="black", poza}={})
+            
             let u= new Utilizator(rezSelect.rows[0])
             proceseazaUtiliz(u, obparam, eroare);
         });

@@ -260,6 +260,19 @@ class AccesBD{
     }
 
     /**
+     * Extrage toate valorile posibile ale unui tip ENUM din baza de date.
+     * @param {string} numeEnum - Numele tipului ENUM setat in Postgres (ex: 'clase_zbor').
+     * @param {string} alias - Numele coloanei pe care il va returna query-ul (pentru a se potrivi cu EJS-ul).
+     * @param {QueryCallBack} callback - Functie apelata la terminarea comenzii.
+     */
+    selectEnum(numeEnum, alias, callback) {
+        let comanda = `select unnest(enum_range(null::${numeEnum})) as ${alias}`;
+        console.log("Extragere ENUM:", comanda);
+        this.client.query(comanda, callback);
+    }
+
+
+    /**
      * Metoda generica pentru executia directa a oricarui query SQL.
      * @param {string} comanda - Sintaxa SQL de executat.
      * @param {QueryCallBack} callback - Functie apelata la terminarea comenzii.
